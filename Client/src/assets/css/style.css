@@ -1,0 +1,28 @@
+a{
+    text-decoration: none;
+}
+input{
+    background-color: #bea7a7 !important;
+    border: none !important;
+    outline: none !important;
+    color: white !important;
+    font-size: 1.2rem !important;
+}
+.container_form{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background: url(../background_container_form.jpg);
+}
+.mycard{
+    box-shadow: 0 0 20px 10px #bea7a7;
+    background: transparent !important;
+    backdrop-filter: blur(20px);
+    width: 30%;
+    
+}
+@media screen and (max-width:830px){
+    .card{
+        width: 80%;
+    }
+}

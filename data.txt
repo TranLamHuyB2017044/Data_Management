@@ -1,0 +1,244 @@
+{
+    "title":"Tri Kỷ1",
+    "description":"Soulmate xoay quanh những thăng trầm trong mối quan hệ và quá trình trưởng thành của Mi So (Kim Da Mi) và Ha Eun (Jeon So Nee), hai người con gái sinh năm 1988 cùng trải qua thời niên thiếu với nhau. Thế giới yên bình của hai người họ bắt đầu có những rạn nứt khi Ha Eun có mối tình đầu với bạn cùng lớp Jin Woo (Byeon Woo Seok). Cả hai dần xa cách nhau khi Mi So lên thành phố để theo đuổi cuộc sống phiêu lưu với một tâm hồn tự do, còn Ha Eun ở lại quê nhà mưu cầu một cuộc sống ổn định.",
+    "poster_url":"https://traffic-edge23.cdn.vncdn.io/cinema/img/3523323972506924-conmemay.jpg",
+    "release_date":"29-03-2023",
+    "duration":120,
+    "category":"Chính Kịch",
+    "national":"Hàn Quốc"
+},
+
+
+{
+	"title": "Hung Thủ Vô Hình",
+	"description": "Hung Thủ Vô Hình xoay quanh một vụ án mạng trong phòng kín, không có dấu hiệu đột nhập cũng không có sự xuất hiện của người thứ ba. Khi nghi phạm duy nhất, Yoo Min Ho (So Ji-sub) thuê luật sư nổi tiếng Yang Sin Ae (Kim Yun-jin) bào chữa cho mình, anh buộc phải kể lại toàn bộ sự thật. Cuộc đối chất căng não giữa nghi phạm và luật sư lại làm lộ ra 1 câu chuyện được sắp đặt tài tình.",
+	"poster_url":"https://subnhanh.cdn1-img.net/hung-thu-vo-hinh-confession-2023-vietsub_1.jpg",
+	"release_date":"14-03-2023",
+	"duration":101,
+	"category":"Hành Động",
+	"national":"Hàn Quốc"
+},
+
+{
+	"title": "Huyễn Thuật Tiên Sinh",
+	"description": "Huyễn Thuật Tiên Sinh xoay quanh câu chuyện Huyễn Thuật Môn bắt nguồn từ triều đại nhà Thương và được chia thành năm trường phái: kim,mộc, thủy, hỏa và thổ. Vào những năm đầu của Trung Hoa Dân Quốc, Bậc thầy Hải quân Bùi Tịnh Chi đã đại khai sát giới vì muốn chiếm đoạt pháp bảo của Huyễn Thuật Môn, nhưng cuối cùng đã bị Hỏa sư Không Không Nhi phong ấn. Hai mươi năm sau, Bùi Tịnh Chi trở lại và giết chết Không Không Nhi. Trước khi Không Không Nhi qua đời, ông đã giao cô nhi Trác Phi Phàm của mình cho hỏa sư Lạc Hà Phi để học hỏa thuật.. Trác Phi Phàm thề sẽ trả thù cho Không Không Nhi, nhưng khi vô tình biết được Bùi Tịnh Chi chính là cha ruột của mình, cậu đã rơi vào tình thế tiến thoái lưỡng nan.",
+	"poster_url":"https://subnhanh.cdn1-img.net/huyen-thuat-tien-sinh-the-great-magician-2023_1.jpg",
+	"release_date":"16-03-2023",
+	"duration":83,
+	"category":"Cổ Trang",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Mở Khóa",
+	"description": "Mở Khóa - Unlocked, cuộc sống của một phụ nữ bỗng dưng đảo lộn khi một người đàn ông có được chiếc điện thoại bị mất của cô, rồi dùng nó để theo dõi mọi hành động của cô.",
+	"poster_url":"https://subnhanh.cdn1-img.net/mo-khoa-unlocked-2023-vietsub_1.jpg",
+	"release_date":"14-01-2023",
+	"duration":117,
+	"category":"Hành Động",
+	"national":"Hàn Quốc"
+},
+
+{
+	"title": "Tình Ta Đẹp Tựa Đóa Hoa",
+	"description": "Tình Ta Đẹp Tựa Đóa Hoa - We Made a Beautiful Bouquet kể câu chuyện tình yêu kéo dài 5 năm giữa một nam và một nữ. Một thanh niên 22 tuổi và một phụ nữ 22 tuổi cùng lỡ chuyến tàu cuối cùng tại ga Meidaimae ở Tokyo và gặp nhau ở đó. Mối quan hệ của họ phát triển lãng mạn.",
+	"poster_url":"https://subnhanh.cdn1-img.net/tinh-ta-dep-tua-doa-hoa-we-made-a-beautiful-bouquet-2023-vietsub_1.jpg",
+	"release_date":"27-01-2023",
+	"duration":124,
+	"category":"Tình Cảm",
+	"national":"Nhật Bản"
+},
+
+{
+	"title": "Remember-Member",
+	"description": "Remember-Member | Re/Member kể về câu chuyện học sinh trung học Asuka nhìn thấy sự xuất hiện của một học sinh đã chết tên là Haruka và cố gắng tìm xác của cô ấy. Asuka và những người bạn của cô ấy cố gắng tìm tám mảnh xác của Haruka nằm rải rác trong trường. Khi làm như vậy, họ tìm hiểu thêm về Người da đỏ đang theo đuổi họ. Người Đỏ săn lùng những học sinh ở một mình trong trường để giết họ, và cho đến khi họ ra khỏi cổng trường, Người Đỏ sẽ tiếp tục xuất hiện trước mặt họ. Khi Người Đỏ giết một học sinh, nó sẽ phân xác học sinh đó thành tám mảnh và giao nhiệm vụ cho những người khác tìm các mảnh đó trong trường. Nếu Asuka không tìm thấy xác của Haruka, ngày tháng sẽ cứ lặp đi lặp lại và cô cùng những người bạn của mình sẽ tiếp tục chết cho đến khi tìm thấy.",
+	"poster_url":"https://subnhanh.cdn1-img.net/remember-member-re-member-2023-vietsub_1.jpg",
+	"release_date":"24-01-2023",
+	"duration":102,
+	"category":"Kinh Dị",
+	"national":"Nhật Bản"
+},
+
+
+{
+	"title": "Hạ Cánh Khẩn Cấp",
+	"description": "Hạ Cánh Khẩn Cấp quy tụ dàn diễn viên đình đám bậc nhất xứ Hàn, bao gồm Song Kang-ho, Lee Byung-hun, Jeon Do-yeon, Kim Nam-Gil và Yim Si-wan, Park Hae-Joon. Bộ phim xoay quanh chuyến bay mang số hiệu KI501 của hãng hàng không Sky Korea, khởi hành từ sân bay quốc tế Incheon tới Honolulu, Hawaii. Không lâu sau khi máy bay cất cánh, một hành khách bắt đầu có những biểu hiện lạ và tử vong trước sự bàng hoàng của mọi người. Một virus lạ với tốc độ lây lan chóng mặt đã xâm nhập lên máy bay, tất cả chìm trong hỗn loạn và sợ hãi. Trong tình huống ngàn cân treo sợi tóc, một tuyên bố đề nghị hạ cánh khẩn cấp được đưa ra. Trên độ cao 8,534 mét, số phận của hơn 150 con người bao gồm cả các hành khách và phi hành đoàn sẽ ra sao?",
+	"poster_url":"https://subnhanh.cdn1-img.net/ha-canh-khan-cap_1.jpg",
+	"release_date":"02-08-2022",
+	"duration":147,
+	"category":"Hành Động",
+	"national":"Hàn Quốc"
+},
+
+
+{
+	"title": "Bảy Viên Ngọc Rồng Siêu Cấp: Siêu Anh Hùng",
+	"description": "Đội quân Ruy Băng Đỏ  (Red Ribbon) đã bị Son Goku tiêu diệt từ lâu. Vậy nhưng, những kẻ kế nghiệp của chúng vẫn còn sống sót đã tạo ra hai chiến binh Android mới tên là Gamma 1 và Gamma 2. Hai Android này xuất hiện và tự nhận mình là những “Siêu anh hùng”. Chúng đã bắt đầu tấn công Piccolo và Gohan… Vậy mục tiêu của Quân đoàn Ruy Băng Đỏ mới này là gì? Trước nguy hiểm cận kề, đã đến lúc các siêu anh hùng thực thụ phải thức tỉnh!",
+	"poster_url":"https://subnhanh.cdn1-img.net/bay-vien-ngoc-rong-sieu-cap-sieu-anh-hung_1.jpg",
+	"release_date":"09-08-2022",
+	"duration":100,
+	"category":"Hoạt Hình",
+	"national":"Nhật Bản"
+},
+
+{
+	"title": "Kingmaker",
+	"description": "Kim Woon-Bum ( Sol Kyung-Gu ) là một chính trị gia của đảng đối lập. Anh ước mơ trở thành tổng thống của đất nước. Seo Chang-Dae ( Lee Sun-Kyun ) là một chiến lược gia xuất sắc. Anh tham gia vào ban vận động bầu cử của Kim Woon-Bum và Kim Woon-Bum tiếp tục giành chiến thắng trong các cuộc bầu cử liên tiếp. Cuối cùng, Kim Woon-Bum được bầu làm ứng cử viên tổng thống cho đảng đối lập. Trong một cuộc bầu cử tổng thống khốc liệt, một vụ nổ xảy ra tại nhà của Kim Woon-Bum. Seo Chang-Dae bị nghi ngờ là thủ phạm.",
+	"poster_url":"https://subnhanh.cdn1-img.net/kingmaker_1.jpg",
+	"release_date":"11-06-2022",
+	"duration":118,
+	"category":"Tâm Lý",
+	"national":"Hàn Quốc"
+},
+
+{
+	"title": "Giải Cứu Cáo Đen",
+	"description": "Vào tháng 7 năm 1945, chuyên gia quân sự Liên Xô Gavrier (La Phi), mang thông tin tình báo đến Trung Quốc, đã bị quân đội Nhật Bản cướp trên đường đi. Đội cứu hộ do Mã Long Xuyên của Quốc dân đảng dẫn đầu đã thất bại thảm hại. Cùng lúc đó, Vương Văn Uyên của Đội quân số 8 được lệnh gia nhập lực lượng tinh nhuệ của Đội biệt kích, sau nhiều khó khăn và nguy hiểm, La Phi đã được giải cứu thành công.",
+	"poster_url":"https://subnhanh.cdn1-img.net/giai-cuu-cao-den_1.jpg",
+	"release_date":"04-07-2022",
+	"duration":83,
+	"category":"Chiến Tranh",
+	"national":"Trung Quốc"
+},
+
+
+{
+	"title": "Thủy Hầu Tử",
+	"description": ""Ma nước" còn được gọi là " Khỉ Nước" . Tương truyền rằng những người chết đuối, tự tử dưới nước sẽ trở thành ma nước. Sau đó kiên nhẫn đợi dưới nước, dụ hoặc ép người rơi xuống nước chết, làm ma thay thế cho chính mình. Hàng ngàn năm nay, ma nước đã dùng phương pháp này để đầu thai và thoát khỏi sự thống khổ của địa ngục. Vào thời Trung Hoa Dân Quốc, có một nơi gọi là "Làng Thiên Thủy" có núi bao quanh, lão thái gia sinh ra ở đó, dưới sự lãnh đạo của trưởng làng, dân làng có một cuộc sống ấm no đầy đủ. Cho đến một đêm, lão thái gia ngồi thuyền trở về, và những điều kỳ lạ bắt đầu xảy ra trong làng ...",
+	"poster_url":"https://subnhanh.cdn1-img.net/thuy-hau-tu_1.jpg",
+	"release_date":"25-06-2022",
+	"duration":72,
+	"category":"Kinh Dị",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Blind War",
+	"description": "Nội dung phim xoay quanh câu chuyện về cựu đội trưởng SWAT Đông Cốc (do An Chí Kiệt thủ vai) bị bọn côn đồ tấn công Đông Cốc trong quá trình làm việc không may bị thương và bị mù vĩnh viễn, và phải chịu trách nhiệm về việc nhiệm vụ bị thất bại. Dưới sự giúp đỡ và đồng hành của con gái, Đông Cốc dần vượt qua khó khăn và chấp nhận việc bản thân bị mù. Kẻ thù cũ của anh lại xuất hiện, con gái anh rơi vào nguy hiểm. Để cứu con gái, Đông Cốc bắt đầu cuộc chiến sinh tử với đôi mắt không thấy ánh sáng.",
+	"poster_url":"https://subnhanh.cdn1-img.net/manh-chien_1.jpg",
+	"release_date":"03-06-2022",
+	"duration":61,
+	"category":"Hành Động",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Tề Thiên Đại Thánh",
+	"description": "Tôn Ngộ Không bị giam giữ ở Ngũ Chỉ Sơn 400 năm, tình cờ được A Nhất cứu thoát. Cha mẹ của A Nhất bị Long thái tử giết hại, nàng ấy muốn Tôn Ngộ Không dẫn nàng đi đến thiên cung để cáo trạng. Long thái tử biết được Tôn Ngộ Không đã thoát khỏi Ngũ Chỉ Sơn, chuẩn bị bẩm báo việc năm đó Đông Hải Long Cung bị phá hủy, lợi dụng huynh đệ tốt của Ngộ Không là Ma Vương để giết hại Ngộ Không. Mặc dù pháp lực của Ngộ Không bị khống chế nhưng Ma vương vẫn ám sát thất bại. Vì vậy đã bắt A Nhất, để cứu A Nhất, Ngộ Không đánh đến Long cung. Ngộ Không và thái tử giao tranh từ biển cho đến tận Nam Thiên Môn. Cuối cùng Ngộ Không được A Nhất cảm hóa, trở về Ngũ Chỉ Sơn tiếp tục tu hành, chờ đợi người có cơ duyên đã định.",
+	"poster_url":"https://subnhanh.cdn1-img.net/te-thien-dai-thanh-2022_1.jpg",
+	"release_date":"08-05-2022",
+	"duration":80,
+	"category":"Thần Thoại",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Cá Mập Máu",
+	"description": "Cá Mập Máu - Horror Shark là bộ phim thuộc thể loại thảm họa, kinh dị, phiêu lưu của Trung Quốc. Tác phẩm do đạo diễn Wang Liang chịu trách nhiệm chỉ đạo, với sự tham gia của các diễn viên Fang Lishen, Zhou Weitong, Wen Dongjun, Wang Liang, Liu Ziqing, Ke Tianrou và Shen Mengsheng.Vào sáu năm trước, vận động viên bơi lội Ming Xuyang (Fang Lishen) đã gặp tai nạn ở Ocean Paradise. Mặc dù đã chữa khỏi vết thương ở chân bằng công nghệ sinh học nhưng anh không thể thoát khỏi cái bóng của nước và cá mập. Sáu năm sau, anh và giáo sư yao Lin trở về quê hương để thu nhập gen sinh vật biển, nhưng không ngờ lại rơi vào một âm mưu cực lớn về cá mập máu do thủ lĩnh Qin Qiguang bày mưu tính kế.Cùng lúc đó, Qi Huan (Zhou Weitong), một huấn luyện viên ở Ocean Paradise, đã phát hiện ra rằng Ming Xuyang thực sự có liên quan đến ám ảnh của chính mình trong nhiều năm. Mặt khác, những con cá mập cố gắng thoát khỏi sự thuần dưỡng và lao vào vùng biển nông do đột biến ghen từ việc chỉnh sửa ghen.",
+	"poster_url":"https://subnhanh.cdn1-img.net/ca-map-mau_1.jpg",
+	"release_date":"25-04-2022",
+	"duration":77,
+	"category":"Kinh Dị",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Cá Sấu Khổng Lồ",
+	"description": "Cá sấu khổng lồ – Mega Crocodile là bộ phim thuộc thể loại hành động, phiêu lưu, thảm họa, kinh dị, khoa học viễn tưởng của Trung Quốc. Tác phẩm do đạo diễn Fugui chịu trách nhiệm chỉ đạo, với sự tham gia của các diễn viên Li Guangbin, Guo Xiwen, Guan Xiangyun và Chen Linsheng. Lou Han vốn là một chuyên gia nghiên cứu cá sấu sống ẩn dật ở nước ngoài, được giao phó bởi một nữ doanh nhân giàu có tên là Kong Mingzhu đến đảo địa ngục đầy cá sấu để tìm em trai Khổng Tử Hào. Sau khi chiến đấu với côn trùng hút máu và cá piranha trên đảo, mọi người đã tìm thấy một căn cứ thí nghiệm bí mật. Sau khi tìm được Khổng Tước, Louhan đã dùng thủ đoạn giết chết con cá sấu khổng lồ đột biến trốn khỏi căn cứ thí nghiệm, dẫn mọi người trốn thoát.",
+	"poster_url":"https://subnhanh.cdn1-img.net/ca-sau-khong-lo_1.jpg",
+	"release_date":"26-04-2022",
+	"duration":84,
+	"category":"Kinh Dị - Viễn Tưởng",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Thuỷ Quái Rừng Gỗ Mun",
+	"description": "Thanh Linh, một nữ bác sĩ pháp y của Trung Hoa Dân Quốc quay trở lại thị trấn Thượng Thuỷ nơi mình từng sinh sống để tìm kiếm người em trai đã mất tích. Nhưng cũng ở đây, cô vô tình phát hiện được bí mật về thân phận của mình. Cô nỗ lực xoá bỏ hủ tục mê tín phong kiến ​​bằng nền văn minh khoa học, dùng sự thật thức tỉnh người dân thị trấn để chống lại thế lực xấu xa.",
+	"poster_url":"https://subnhanh.cdn1-img.net/thuy-quai-rung-go-mun_1.jpg",
+	"release_date":"04-05-2022",
+	"duration":85,
+	"category":"Kinh Dị",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Kill Bok Soon",
+	"description": "Kill Bok Soon nói về một người phụ nữ, khi trong công việc, cô là một sát thủ khét tiếng, nhưng khi ở nhà thì cô lại là một bà mẹ đơn thân của cô con gái đang tuổi teen. Giết người ư? Dễ như bỡn! Nuôi dạy con cái mới thực sự là điều khó khăn.",
+	"poster_url":"https://subnhanh.cdn1-img.net/kill-bok-soon-2023-vietsub_1.jpg",
+	"release_date":"28-02-2023",
+	"duration":137,
+	"category":"Hành Động",
+	"national":"Hàn Quốc"
+},
+
+{
+	"title": "Côn Trùng Cát",
+	"description": "Phim lấy bối cảnh Trái Đất trong tương lai, khi lúc bấy giờ con người đối mặt với việc suy thoái kinh tế. Không những thế rác thải ra môi trường ngày càng nhiều khiến cho không khí và tần ô Zôn bị thủng trở nên nghiêm trọng hơn, và Trái Đất phải đối mặt với thời kỳ sa mạc hóa. Các Động thực vật đều bị biến dạng, trở thành những con Trùng cát. Chúng bắt đầu sản sinh và xâm chiếm không gian khiến trái đất đối mặt với sự diệt vong. Lúc này Tôn Bác Văn, cùng với nhà khoa học Lưu Văn và đội trưởng Vương Cường, cùng nhau bắt đầu cuộc hành trình giải cứu nhân loại.",
+	"poster_url":"https://subnhanh.cdn1-img.net/con-trung-cat_1.jpg",
+	"release_date":"21-02-2022",
+	"duration":78,
+	"category":"Viễn Tưởng",
+	"national":"Trung Quốc"
+},
+
+{
+	"title": "Thoát Khỏi Mogadishu",
+	"description": "Khi Mogadishu , thành phố thủ đô của Somalia , bị nội chiến tàn phá vào năm 1991, các nhân viên và gia đình của đại sứ quán Hàn Quốc bị mắc kẹt không có phương tiện liên lạc. Đi ra ngoài đồng nghĩa với việc đối mặt với một trận mưa đạn và đạn pháo. Trong tình huống như vậy vào một đêm, nhân viên từ đại sứ quán Triều Tiên đã đến gặp họ để nhờ giúp đỡ. Với mục tiêu chung là trốn khỏi Mogadishu, những người từ cả hai đại sứ quán đã thực hiện một nỗ lực táo bạo để đến sân bay trong điều kiện hỗn loạn.",
+	"poster_url":"https://subnhanh.cdn1-img.net/thoat-khoi-mogadishu_1.jpg",
+	"release_date":"06-11-2021",
+	"duration":121,
+	"category":"Hành Động",
+	"national":"Hàn Quốc"
+},
+
+{
+	"title": "Venom: Đối Mặt Tử Thù",
+	"description": "18 tháng sau các sự kiện trong Venom (2018), phóng viên Eddie Brock cố gắng làm quen với việc sống như 1 vật chủ của sinh vật ngoài hành tinh Venom, kẻ ban cho anh siêu năng lực nhưng cũng khiến anh phải cảnh giác. Brock cố gắng xây dựng lại sự nghiệp của mình bằng cách phỏng vấn tên sát nhân Cletus Kasady, kẻ trở thành vật chủ của sinh vật Carnage và bỏ trốn khỏi nhà tù sau khi may mắn thoát khỏi hành quyết.",
+	"poster_url":"https://subnhanh.cdn1-img.net/venom-doi-mat-tu-thu_1.jpg",
+	"release_date":"18-11-2021",
+	"duration":97,
+	"category":"Hành Động",
+	"national":"Mỹ"
+},
+
+{
+	"title": "Halloween Chết Người",
+	"description": "Phim là câu chuyện về cuộc trả thù đẫm máu của quái vật Michael Myers trong đêm Halloween. Câu chuyện bắt đầu khi con gái Karen và cháu gái Allyson bắt được quái vật Michael Myers sau đó, chúng đã nhốt và đốt hắn dưới hầm nhà Laurie rồi đốt. Tuy nhiên, quái vật Michael đã trốn thoát được. Từ đó là một cuộc trả thù đẫm máu.",
+	"poster_url":"https://subnhanh.cdn1-img.net/halloween-chet-nguoi_1.jpg",
+	"release_date":"19-11-2021",
+	"duration":106,
+	"category":"Kinh Dị",
+	"national":"Mỹ"
+},
+
+{
+	"title": "MaKo",
+	"description": "Phim xoay quanh 8 người sở hữu một công ty sản xuất phim tài liệu, họ quyết định lên đường để làm một bộ phim tài liệu về con tàu Elsalam bị chìm ở vùng biển Biển Đỏ, và họ phải trải qua nhiều thử thách để đến được nó, và các sự kiện tiếp theo, và nhiều bất ngờ và thảm họa xảy ra với họ.",
+	"poster_url":"https://subnhanh.cdn1-img.net/mako_1.jpg",
+	"release_date":"06-12-2021",
+	"duration":90,
+	"category":"Phiêu Lưu - Hành Động",
+	"national":"Ai Cập"
+},
+
+{
+	"title": "The Card Counter",
+	"description": "Phim xoay quanh câu chuyện về người đàn ông William Tell luôn mê cờ bạc. Thế nhưng, sự đam mê chơi bài của anh trên sòng bạc bỗng bị phá vỡ khi Crick một thanh niên dễ thương đã tiếp cận anh tìm kiếm sự giúp đỡ để trả thù cho một đại tá trong quân đội. William Ted nhận ra rằng đây chính là cơ hội để anh có thể chuộc được lỗi của mình nhờ mối quan hệ với Crik. Thế nhưng dần dần anh mới phát hiện ra giữ Crik bên người đều không thể giúp Tell thoát khỏi bóng tối trong quá khứ.",
+	"poster_url":"https://subnhanh.cdn1-img.net/may-dem-the_1.jpg",
+	"release_date":"04-12-2021",
+	"duration":109,
+	"category":"Hành Động",
+	"national":"Mỹ"
+},
+
+{
+	"title": "",
+	"description": "",
+	"poster_url":"",
+	"release_date":"",
+	"duration":"",
+	"category":"",
+	"national":""
+},
+
