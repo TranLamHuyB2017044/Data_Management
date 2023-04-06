@@ -8,8 +8,15 @@ exports.getAllFilm = (req, res) => {
 };
 
 exports.createFilm = (req, res) => {
-    var newFilm = new Film(req.body);
-    Film.createFilm(newFilm, (err, result) => {
+    var data = req.body
+     var newFilms =  []; 
+    data.forEach(film => {
+        let newFilm = [film.title , film.description, film.poster_url, film.release_date, film.duration,film.category, film.national];
+        newFilms.push(newFilm);
+    });
+    
+    console.log(newFilms);
+    Film.createFilm(newFilms, (err, result) => {
         if (err) res.send(err);
         else res.send(result);
     });

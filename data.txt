@@ -1,4 +1,5 @@
-{
+[
+	{
     "title":"Tri Kỷ1",
     "description":"Soulmate xoay quanh những thăng trầm trong mối quan hệ và quá trình trưởng thành của Mi So (Kim Da Mi) và Ha Eun (Jeon So Nee), hai người con gái sinh năm 1988 cùng trải qua thời niên thiếu với nhau. Thế giới yên bình của hai người họ bắt đầu có những rạn nứt khi Ha Eun có mối tình đầu với bạn cùng lớp Jin Woo (Byeon Woo Seok). Cả hai dần xa cách nhau khi Mi So lên thành phố để theo đuổi cuộc sống phiêu lưu với một tâm hồn tự do, còn Ha Eun ở lại quê nhà mưu cầu một cuộc sống ổn định.",
     "poster_url":"https://traffic-edge23.cdn.vncdn.io/cinema/img/3523323972506924-conmemay.jpg",
@@ -104,7 +105,7 @@
 
 {
 	"title": "Thủy Hầu Tử",
-	"description": ""Ma nước" còn được gọi là " Khỉ Nước" . Tương truyền rằng những người chết đuối, tự tử dưới nước sẽ trở thành ma nước. Sau đó kiên nhẫn đợi dưới nước, dụ hoặc ép người rơi xuống nước chết, làm ma thay thế cho chính mình. Hàng ngàn năm nay, ma nước đã dùng phương pháp này để đầu thai và thoát khỏi sự thống khổ của địa ngục. Vào thời Trung Hoa Dân Quốc, có một nơi gọi là "Làng Thiên Thủy" có núi bao quanh, lão thái gia sinh ra ở đó, dưới sự lãnh đạo của trưởng làng, dân làng có một cuộc sống ấm no đầy đủ. Cho đến một đêm, lão thái gia ngồi thuyền trở về, và những điều kỳ lạ bắt đầu xảy ra trong làng ...",
+	"description": "\"Ma nước\" còn được gọi là \" Khỉ Nước\" . Tương truyền rằng những người chết đuối, tự tử dưới nước sẽ trở thành ma nước. Sau đó kiên nhẫn đợi dưới nước, dụ hoặc ép người rơi xuống nước chết, làm ma thay thế cho chính mình. Hàng ngàn năm nay, ma nước đã dùng phương pháp này để đầu thai và thoát khỏi sự thống khổ của địa ngục. Vào thời Trung Hoa Dân Quốc, có một nơi gọi là \"Làng Thiên Thủy\" có núi bao quanh, lão thái gia sinh ra ở đó, dưới sự lãnh đạo của trưởng làng, dân làng có một cuộc sống ấm no đầy đủ. Cho đến một đêm, lão thái gia ngồi thuyền trở về, và những điều kỳ lạ bắt đầu xảy ra trong làng ...",
 	"poster_url":"https://subnhanh.cdn1-img.net/thuy-hau-tu_1.jpg",
 	"release_date":"25-06-2022",
 	"duration":72,
@@ -230,15 +231,7 @@
 	"duration":109,
 	"category":"Hành Động",
 	"national":"Mỹ"
-},
+}
 
-{
-	"title": "",
-	"description": "",
-	"poster_url":"",
-	"release_date":"",
-	"duration":"",
-	"category":"",
-	"national":""
-},
 
+]

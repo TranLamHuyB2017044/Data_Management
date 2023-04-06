@@ -10,7 +10,7 @@ const Film = function (film) {
     this.national = film.national;
 };
 Film.createFilm = (newFilm, cb) => {
-    sql.query('insert into movies set ?', newFilm, (err, res) => {
+    sql.query('insert into movies(title,description,poster_url,release_date, duration,category,national) values ?', [newFilm], (err, res) => {
         if (err) {
             cb(err, null);
         } else {
