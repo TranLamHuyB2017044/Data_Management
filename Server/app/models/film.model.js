@@ -34,7 +34,7 @@ Film.getFilmById = (id, cb) => {
         if (err) {
             cb(err, null);
         } else {
-            cb(null, result);
+            cb(null, result[0]);
         }
     });
 };
