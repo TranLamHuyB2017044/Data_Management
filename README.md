@@ -6,7 +6,7 @@ USGE version 2.0
 	[
 		film1,
 		flim2,
-		....
+		.... 
 	]
 4. Phần server mấy fen coi lại phần route, model, controller do tui đã thêm cái Admin và có chỉnh sửa một số thứ.
 5. Phần client mấy fen cũng coi thêm phần route, service do tui cũng có chỉnh sửa.
