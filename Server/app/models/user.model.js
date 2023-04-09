@@ -6,6 +6,7 @@ const User = function (user) {
     this.username = user.username;
     this.password = user.password;
     this.email = user.email;
+    this.admin = user.admin;
 };
 User.createUser = (newUser, cb) => {
     const query = `INSERT INTO users set ?`;
@@ -36,6 +37,15 @@ User.getAllUser = (cb) => {
         }
     });
 };
+User.removeAllUser = (cb) => {
+    sql.query('Delete from users', (err, result) => {
+        if (err) {
+            cb(err, null);
+        } else {
+            cb(null, result.affectedRows);
+        }
+    });
+};
 User.updateById = (id, newUser, cb) => {
     sql.query(
         'UPDATE users SET name=?, username=?, password=?, email=?  WHERE user_id = ?',
@@ -50,7 +60,7 @@ User.updateById = (id, newUser, cb) => {
     );
 };
 User.removeUser = (id, cb) => {
-    sql.query('DELETE FROM users WHERE user_id = ?', id, (err, result) => {
+    sql.query('call removeUser(?)', id, (err, result) => {
         if (err) {
             cb(err, null);
         } else {
@@ -66,8 +76,8 @@ User.getOneUserById = (id, cb) => {
             if (err) {
                 cb(err, null);
             } else {
-                if (result.length === 0) result = null;
-                cb(null, result[0]);
+                if (result.length === 0) cb(null, null);
+                else cb(null, result[0]);
             }
         },
     );

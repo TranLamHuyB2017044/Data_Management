@@ -37,24 +37,14 @@ Booking.createBooking = (newBooking, seats, cb) => {
         ];
         data.push(newB);
     });
-    console.log(data);
     try {
         data.forEach((d) => {
-            sql.query(query, d, (err, result) => {
-                console.log(result);
-            });
+            sql.query(query, d, (err, result) => {});
         });
-        cb(null, 'Add seccessfully');
+        cb(null, 'Booking seccessfully');
     } catch (err) {
         cb(err, null);
     }
-    // sql.query(query, data, (err, result) => {
-    //     if (err) {
-    //         cb(err, null);
-    //     } else {
-    //         cb(null, result);
-    //     }
-    // });
 };
 Booking.getBookingById = (id, cb) => {
     sql.query(
@@ -67,6 +57,15 @@ Booking.getBookingById = (id, cb) => {
             }
         },
     );
+};
+Booking.getBookingByUserId = (id, cb) => {
+    sql.query(`Select * from bookings where user_id = ${id}`, (err, result) => {
+        if (err) {
+            cb(err, null);
+        } else {
+            cb(null, result);
+        }
+    });
 };
 Booking.getAllBooking = (cb) => {
     sql.query('Select * from bookings', (err, result) => {

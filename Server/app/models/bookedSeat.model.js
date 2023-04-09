@@ -27,14 +27,18 @@ Seat.getSeatById = (id, cb) => {
         },
     );
 };
-Seat.getAllSeat = (cb) => {
-    sql.query('Select * from bookedSeats', (err, result) => {
-        if (err) {
-            cb(err, null);
-        } else {
-            cb(null, result);
-        }
-    });
+Seat.getAllSeat = (movie_id, cb) => {
+    sql.query(
+        'Select seat_id from bookings b join bookedSeats bs on bs.booking_id = b.booking_id where movie_id=?',
+        movie_id,
+        (err, result) => {
+            if (err) {
+                cb(err, null);
+            } else {
+                cb(null, result);
+            }
+        },
+    );
 };
 Seat.updateById = (id, newSeat, cb) => {
     sql.query(
