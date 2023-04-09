@@ -13,14 +13,30 @@
                 this.userStore.user.name
             }}</span>
             <router-link v-else to="/login" class="cta">Login</router-link>
-            <div v-if="this.userStore.user" @click="logout" class="cta">
-                Logout
-            </div>
-        </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li><button v-if="this.userStore.user" @click="logout" class="dropdown-item" type="button">Logout</button></li>
+                        <li>
+                            <router-link to="/myticket" class="dropdown-item" type="button">
+                                My Ticket
+                            </router-link>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                Something else here
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+        </div> 
     </header>
 </template>
 <script>
-import { useUserStore } from '../stores/user.store';
+import { useUserStore } from "../stores/user.store";
 export default {
     setup() {
         const userStore = useUserStore();
@@ -31,9 +47,9 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem('id');
+            localStorage.removeItem("id");
             this.userStore.user = null;
-            this.$router.push({ name: 'login' });
+            this.$router.push({ name: "login" });
         },
     },
 };
@@ -51,19 +67,22 @@ header {
 .logo {
     cursor: pointer;
 }
+
 .header-title {
     text-decoration: none;
     font-size: 25px;
     font-weight: bold;
     color: rgb(16, 179, 220);
 }
+
 .header-title:hover {
     opacity: 0.8;
     color: rgb(16, 179, 220);
 }
+
 .nav__links a,
 .cta {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     color: #edf0f1;
     text-decoration: none;

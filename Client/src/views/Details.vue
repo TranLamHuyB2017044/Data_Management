@@ -42,7 +42,7 @@
         <h3 class="text-center mt-2 mb-4 text-light text-uppercase ">man hinh</h3>
         <div class="seats" v-for="index in 9" :key="index">
           <div class="seat" v-for="number in 12" :key="number">
-            <span>{{ changeText(index) }}{{ number }}</span>
+            <span @click="getPosition" ref="myRef"  >{{ changeText(index) }}{{ number }}</span>
           </div>
         </div>
         <div class="seat-inform">
@@ -96,18 +96,20 @@ export default {
         weekday: date.toLocaleDateString("en-US", { weekday: "long" }),
         day: date.getDate(),
       };
-      //   console.log(newdate);
       return newdate;
     },
     changeText(number) {
       const index = 64 + number;
       return String.fromCharCode(index);
     },
+    getPosition(){
+      console.log(this.$refs.myRef.innerHTML)
+    }
   },
 
   async mounted() {
     await this.getDetail();
-    console.log(this.getDate(1).day);
+    // console.log(this.getDate(1).day);
   },
 };
 </script>
@@ -171,46 +173,6 @@ h4 {
   opacity: 0.8;
 }
 
-/* @media (max-width: 992px) {
-  .movie-img {
-    width: 100%;
-    height: 350px;
-    margin-left: -0.65rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-  }
-
-  .play-text {
-    margin-top: 10rem;
-  }
-
-  .play {
-    flex-direction: column;
-  }
-
-  .rate {
-    width: 30%;
-    position: relative;
-    top: 10px;
-    left: 10px;
-  }
-
-  .rate-btn {
-    position: relative;
-    top: 40px;
-    left: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  p {
-    width: 200px;
-  }
-
-  .rate {
-    width: 40%;
-  }
-} */
 .date {
   background-color: #c1c2d6;
 }
@@ -250,6 +212,10 @@ h4 {
   border-radius: 10px;
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
+}
+.seat:hover{
+  transform: scale(1.1);
 }
 .seat-inform {
   text-align: center;

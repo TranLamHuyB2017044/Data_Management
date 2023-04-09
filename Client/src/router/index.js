@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Details from '../views/Details.vue'
+import myTicket from '../views/myTicket.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -26,7 +27,12 @@ const router = createRouter({
       name: 'details',
       component: Details,
       props:true
-  },
+    },
+    {
+      path: '/myticket',
+      name: 'myticket',
+      component: myTicket,
+    },
 
   ]
 })
