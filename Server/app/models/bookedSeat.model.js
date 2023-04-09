@@ -27,10 +27,10 @@ Seat.getSeatById = (id, cb) => {
         },
     );
 };
-Seat.getAllSeat = (movie_id, cb) => {
+Seat.getAllSeat = (movie_id, date, cb) => {
     sql.query(
-        'Select seat_id from bookings b join bookedSeats bs on bs.booking_id = b.booking_id where movie_id=?',
-        movie_id,
+        'Select seat_id from bookings b join bookedSeats bs on bs.booking_id = b.booking_id where movie_id=? and date=?',
+        [movie_id, date],
         (err, result) => {
             if (err) {
                 cb(err, null);

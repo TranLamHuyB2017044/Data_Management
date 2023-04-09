@@ -8,10 +8,14 @@ exports.createSeat = (req, res) => {
     });
 };
 exports.getAllSeat = (req, res) => {
+    const date = req.params.date;
     const movie_id = req.params.movie_id;
-    Seat.getAllSeat(movie_id, (err, result) => {
+    Seat.getAllSeat(movie_id, date, (err, result) => {
         if (err) res.send(err);
-        else res.send(result);
+        else {
+            let arr = result.map((seat) => seat.seat_id);
+            res.send(arr);
+        }
     });
 };
 
