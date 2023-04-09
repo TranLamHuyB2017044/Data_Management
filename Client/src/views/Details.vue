@@ -12,7 +12,7 @@
 
         <p>Country: {{ film.national }}</p>
         <p>Duration: {{ film.duration }} minutes</p>
-  
+
         <button class="btn-favorite d-none d-lg-block">
           <i class="fa-solid fa-plus"></i> Add to favorite
         </button>
@@ -26,6 +26,7 @@
           class="day d-flex flex-column justify-content-center align-items-center mx-3 text-center py-2"
           v-for="index_date in 7"
           :key="index_date"
+          @click="getCurrentDay(getDate(index_date))"
         >
           <div class="number_date w-100">
             <span class="">{{ getDate(index_date).day }}</span>
@@ -39,29 +40,41 @@
     <div class="position-booking">
       <div class="seat-container pb-3">
         <div class="screen mx-auto"></div>
-        <h3 class="text-center mt-2 mb-4 text-light text-uppercase ">man hinh</h3>
+        <h3 class="text-center mt-2 mb-4 text-light text-uppercase">
+          man hinh
+        </h3>
         <div class="seats" v-for="index in 9" :key="index">
           <div class="seat" v-for="number in 12" :key="number">
-            <span @click="getPosition" ref="myRef"  >{{ changeText(index) }}{{ number }}</span>
+            <span @click="getPosition(index, number)" ref="myRef"
+              >{{ changeText(index) }}{{ number }}</span
+            >
           </div>
         </div>
         <div class="seat-inform">
           <div class="seat-notices"></div>
-          <h5 class="seat-inform-text" style="color: #fff;">Da dat</h5>
+          <h5 class="seat-inform-text" style="color: #fff">Da dat</h5>
         </div>
       </div>
       <div class="temp-ticket">
         <h3>{{ film.title }}</h3>
-        <h3 style="color: rgb(249, 115, 22);">21:10 ~ 22:56 · CN, 09/04 · Phòng chiếu 1 · 2D Phụ đề</h3>
-        <hr>
+        <h3 style="color: rgb(249, 115, 22)">
+          21:10 ~ 22:56 · CN, 09/04 · Phòng chiếu 1 · 2D Phụ đề
+        </h3>
+        <hr />
         <div class="sited">
           <h3>Chỗ ngồi</h3>
         </div>
-        <hr>
+        <hr />
         <div class="buy-ticket">
           <h3>Tạm tính</h3>
           <h1>0đ</h1>
-          <button type="button" class="btn btn-lg btn-primary">Mua ve</button>
+          <button
+            @click="createTicket"
+            type="button"
+            class="btn btn-lg btn-primary"
+          >
+            Mua ve
+          </button>
         </div>
       </div>
     </div>
@@ -70,14 +83,19 @@
 <script>
 import { useFilmStore } from "../stores/film.store";
 import filmService from "../services/film.service";
+import bookingService from "../services/booking.service";
+import { useUserStore } from "../stores/user.store";
 export default {
   setup() {
     const useFilm = useFilmStore();
-    return { useFilm };
+    const useUser = useUserStore();
+    return { useFilm, useUser };
   },
   data() {
     return {
       film: {},
+      currentDay: {},
+      seats: new Array(),
     };
   },
   methods: {
@@ -91,10 +109,14 @@ export default {
     getDate(number) {
       var date = new Date();
 
-      date.setDate(date.getDate() + number);
+      date.setDate(date.getDate() + number - 1);
       var newdate = {
         weekday: date.toLocaleDateString("en-US", { weekday: "long" }),
         day: date.getDate(),
+        fullDay: `${date.getDate()}-${
+          date.getMonth() + 1
+        }-${date.getFullYear()}`,
+        time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
       };
       return newdate;
     },
@@ -102,9 +124,34 @@ export default {
       const index = 64 + number;
       return String.fromCharCode(index);
     },
-    getPosition(){
-      console.log(this.$refs.myRef.innerHTML)
-    }
+    getCurrentDay(currentDay) {
+      this.currentDay = currentDay;
+      console.log(this.currentDay);
+    },
+    getPosition(index, number) {
+      const seat = `${this.changeText(index)}${number}`;
+      console.log(seat);
+      this.seats.push(seat);
+      console.log(this.seats);
+    },
+    async createTicket() {
+      try {
+        const array = this.seats.map((seat) => seat);
+        const formTicket = {
+          userID: this.useUser.user.user_id,
+          movie_id: Number.parseInt(this.$route.params.id),
+          date: this.currentDay.fullDay,
+          newTime: this.currentDay.time,
+          newLocation: "Lotte Can Tho",
+          seats: array,
+        };
+        console.log(formTicket);
+        await bookingService.create(formTicket);
+        this.router.push({ name: "myticket" });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 
   async mounted() {
@@ -188,10 +235,9 @@ h4 {
   background: #000;
   padding: 10px 0;
 }
-.position-booking{
-    margin: 20px auto;
-    border-radius: 10px;
-    
+.position-booking {
+  margin: 20px auto;
+  border-radius: 10px;
 }
 .seats {
   display: flex;
@@ -201,7 +247,6 @@ h4 {
   margin: 7px auto;
   flex-wrap: wrap;
   gap: 7px;
-  
 }
 .seat {
   border: 1px #000;
@@ -214,7 +259,7 @@ h4 {
   line-height: 50px;
   cursor: pointer;
 }
-.seat:hover{
+.seat:hover {
   transform: scale(1.1);
 }
 .seat-inform {
@@ -240,19 +285,18 @@ h4 {
   height: 5px;
   border-radius: 10px;
   background: #fff;
-
 }
-.temp-ticket{
-    border: 1px solid #000;
-    margin: 0 auto auto auto;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
+.temp-ticket {
+  border: 1px solid #000;
+  margin: 0 auto auto auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
 }
-.btn{
-    float: right;
-    margin-top: -50px;
-    margin-right: 20px;
+.btn {
+  float: right;
+  margin-top: -50px;
+  margin-right: 20px;
 }
 /* p {
   color: #fff;
