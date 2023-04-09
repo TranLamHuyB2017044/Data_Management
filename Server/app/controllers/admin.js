@@ -8,7 +8,7 @@ exports.getAllUser = (req, res) => {
 };
 exports.removeAllUser = (req, res) => {
     const admin = req.params.admin;
-    if (admin === 'true')
+    if (admin)
         User.removeAllUser((err, result) => {
             if (err) res.send(err);
             else res.send('Deleted all users.');
@@ -33,12 +33,15 @@ exports.getOneUser = (req, res) => {
 };
 exports.getOneUserById = (req, res) => {
     const id = req.params.id;
-    if (isNaN(Number.parseInt(id))) res.send();
-    else
-        User.getOneUserById(id, (err, result) => {
-            if (err) res.send(err);
-            else res.send(result);
-        });
+    const admin = req.body.admin;
+    if (admin)
+        if (isNaN(Number.parseInt(id))) res.send();
+        else
+            User.getOneUserById(id, admin, (err, result) => {
+                if (err) res.send(err);
+                else res.send(result);
+            });
+    else res.status(300).send("You aren't admin.");
 };
 exports.updateUser = (req, res) => {
     User.updateById(req.params.id, new User(req.body), (err, result) => {
@@ -57,17 +60,4 @@ exports.removeUser = (req, res) => {
                 message: `Deleted successfully User have id = ${req.params.id}`,
             });
     });
-};
-exports.removeUserForAdmin = (req, res) => {
-    const id = req.params.id;
-    const admin = req.params.admin;
-    if (admin === 'true')
-        User.removeUser(id, (err, task) => {
-            if (err) res.send(err);
-            else
-                res.send({
-                    message: `Deleted successfully User have id = ${req.params.id}`,
-                });
-        });
-    else res.status(300).send("You aren't admin.");
 };

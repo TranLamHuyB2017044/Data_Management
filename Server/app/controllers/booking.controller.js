@@ -34,7 +34,12 @@ exports.getOneBooking = (req, res) => {
         else res.send(result);
     });
 };
-
+exports.getBookingByUserId = (req, res) => {
+    Booking.getBookingByUserId(req.params.user_id, (err, result) => {
+        if (err) res.send(err);
+        else res.send(result);
+    });
+};
 exports.updateBooking = (req, res) => {
     Booking.updateById(req.params.id, new Booking(req.body), (err, result) => {
         if (err) res.send(err);

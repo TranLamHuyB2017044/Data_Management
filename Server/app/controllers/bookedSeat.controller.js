@@ -8,7 +8,8 @@ exports.createSeat = (req, res) => {
     });
 };
 exports.getAllSeat = (req, res) => {
-    Seat.getAllSeat((err, result) => {
+    const movie_id = req.params.movie_id;
+    Seat.getAllSeat(movie_id, (err, result) => {
         if (err) res.send(err);
         else res.send(result);
     });

@@ -23,6 +23,14 @@ export default defineConfig({
                 target: 'http://localhost:3000',
                 changeOrigin: true,
             },
+            '/boooking': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+            },
+            '/admin': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+            },
         },
     },
 });

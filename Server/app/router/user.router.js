@@ -7,7 +7,8 @@ router.route('/login').post(userController.getOneUser);
 router
     .route('/')
     .get(userController.getAllUser)
-    .post(userController.createUser);
+    .post(userController.createUser)
+    .delete(userController.removeAllUser);
 router
     .route('/:id')
     .get(userController.getOneUserById)

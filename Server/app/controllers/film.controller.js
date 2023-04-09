@@ -8,14 +8,21 @@ exports.getAllFilm = (req, res) => {
 };
 
 exports.createFilm = (req, res) => {
-    var data = req.body
-     var newFilms =  []; 
-    data.forEach(film => {
-        let newFilm = [film.title , film.description, film.poster_url, film.release_date, film.duration,film.category, film.national];
+    var data = req.body;
+    var newFilms = [];
+    data.forEach((film) => {
+        let newFilm = [
+            film.title,
+            film.description,
+            film.poster_url,
+            film.release_date,
+            film.duration,
+            film.category,
+            film.national,
+        ];
         newFilms.push(newFilm);
     });
-    
-    console.log(newFilms);
+
     Film.createFilm(newFilms, (err, result) => {
         if (err) res.send(err);
         else res.send(result);
@@ -38,21 +45,24 @@ exports.updateFilm = (req, res) => {
 };
 
 exports.removeFilm = (req, res) => {
-    Film.removeFilm(req.params.id, (err, result) => {
-        if (err) res.send(err);
-        else
-            res.send({
-                message: `Deleted successfully Film have id = ${req.params.id}`,
-            });
-    });
+    const admin = req.params.admin;
+    if (admin === 'true')
+        Film.removeFilm(req.params.id, (err, result) => {
+            if (err) res.send(err);
+            else
+                res.send({
+                    message: `Deleted successfully Film have id = ${req.params.id}`,
+                });
+        });
+    else res.status(300).send("You aren't admin.");
 };
 
 exports.removeAllFilms = (req, res) => {
-    Film.removeAllFilms((err, result) => {
-        if (err) res.send(err);
-        else
-            res.send({
-                message: `Deleted successfully all films`,
-            });
-    });
+    const admin = req.params.admin;
+    if (admin === 'true')
+        Film.removeAllFilms((err, result) => {
+            if (err) res.send(err);
+            else res.send(`Deleted successfully all films.`);
+        });
+    else res.status(300).send("You aren't admin.");
 };

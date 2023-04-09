@@ -1,6 +1,7 @@
+-- ALTER USER 'root'@'localhost' IDENTIFIED BY '12345';
 CREATE database MOVIE_BOOKING;
 USE MOVIE_BOOKING;
--- SET FOREIGN_KEY_CHECKS=1;
+
 CREATE TABLE movies (
   `movie_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(500) NOT NULL,
@@ -8,16 +9,18 @@ CREATE TABLE movies (
   `poster_url` VARCHAR(300) NOT NULL,
   `release_date` VARCHAR(10) NOT NULL,
   `duration` INT NOT NULL,
-  `category` VARCHAR(20) NOT NULL,
+  `category` VARCHAR(50) NOT NULL,
   `national` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`movie_id`)
 );
+
 CREATE TABLE users (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `username` VARCHAR(20) not null,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
+   `admin` boolean NOT NULL,
   PRIMARY KEY (`user_id`)
 );
 
@@ -29,15 +32,21 @@ CREATE TABLE bookings (
   `time` VARCHAR(10) NOT NULL,
   `location` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`booking_id`),
-  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`),
+  FOREIGN KEY (`user_id`) REFERENCES users(`user_id`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   FOREIGN KEY (`movie_id`) REFERENCES movies(`movie_id`)
+  		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 CREATE TABLE bookedSeats(
 	`seat_id` char(4),
-    `movie_id` INT NOT NULL,
-    primary key (`seat_id`,`movie_id`),
-    foreign key (`movie_id`) references movies (`movie_id`)
+    `booking_id` INT NOT NULL,
+    primary key (`seat_id`,`booking_id`),
+    foreign key (`booking_id`) references bookings (`booking_id`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 delimiter $$
 drop trigger  if exists check_newuser $$
@@ -71,17 +80,6 @@ begin
 	end if;
 end;
 delimiter;
-insert into users(`name`, `username`, `password`, `email`) values ('', 'khoi', 'sdf', 'khoi@gmail.com');
-
-delimiter $$
-drop procedure if exists removeBooking $$
-create procedure removeBooking(id int)
-begin 
-	delete from bookedSeats where `booking_id`=id;
-    delete from bookings where `booking_id`=id;
-end;
-delimiter;
-
 -- check valid date of movie when booking
 delimiter $$
 drop function if exists checkReleaseDate $$
@@ -91,22 +89,21 @@ deterministic
 begin 
 	declare currentDate date default curdate();
     set releasedate= str_to_date(releasedate, '%d-%m-%Y');
-    return releasedate >= currentDate;
+    return releasedate <= currentDate;
 end;
 delimiter;
-select checkReleaseDate('1-04-2024')
 
 delimiter $$
 drop procedure  if exists movie_booking $$
 create procedure movie_booking(`new_user_id` int , `new_movie_id` int , `new_date` varchar(10),`new_time` varchar(10), `new_location` varchar(200), `new_seat_id` varchar(4))
 begin 
 	declare cnt int default 0;
-    declare id int default 1;
+    declare id int ;
+    declare idOfBooking int ;
     declare validDate boolean default true;
     declare releaseDate varchar(10);
 	start transaction;
     select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date`=  `new_date` and `time`=`new_time`and `location`=`new_location`;
-
     if cnt = 0 then
 		insert into bookings(`user_id`,`movie_id`,`date`,`time`,`location`) value (`new_user_id`,`new_movie_id`,`new_date`,`new_time`,`new_location`);
     end if;
@@ -115,12 +112,35 @@ begin
     select `release_date` into releaseDate from movies where `movie_id`=`new_movie_id`;
 	select checkReleaseDate(releaseDate) into validDate;
     -- check booked seats: 2 booking users at the same, if user1 booked with the same seats before user2 then booking user2 will cancel.
-    select count(*) into cnt from bookedSeats where `seat_id` =`new_seat_id` and `movie_id`=`new_movie_id`;
+    select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
+    select * from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
     if validDate = true and cnt=0 then
-		insert into bookedSeats(`seat_id`,`movie_id`) value (`new_seat_id`,`new_movie_id`);
+		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date`=  `new_date` and `time`=`new_time`and `location`=`new_location`;
+		insert into bookedSeats(`seat_id`,`booking_id`) value (`new_seat_id`,`idOfBooking`);
 		commit;
 	else rollback;
 	end if;
 end;
 delimeter;
-call movie_booking(1,2,'02-04-2023','20:05', 'Can Tho','E17'); 
+-- call movie_booking(16,170,'02-04-2023','20:07', 'Can Tho','E18'); 
+
+
+ delimiter $$
+drop procedure if exists removeBooking $$
+create procedure removeBooking(id int)
+begin 
+	delete from bookings where `booking_id`=id;
+	delete from bookedSeats where `booking_id`=id;
+end;
+delimiter;
+
+delimiter $$
+drop procedure if exists removeUser $$
+create procedure removeUser(`id` int)
+begin 
+	declare idOfBooking int;
+    select `booking_id` into idOfBooking from bookings where `user_id`=`id`;
+	delete from users where `user_id`=`id`;
+    call removeBooking(idOfBooking);
+end;
+delimiter;
