@@ -232,7 +232,7 @@ export default {
 }
 
 .play {
-  /* margin-top: 50px; */
+  /* margin-top: 50px;aaa */
   display: flex;
   padding: 24px 24px 60px 40px;
   margin-bottom: 100px;
