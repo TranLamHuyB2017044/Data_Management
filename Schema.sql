@@ -144,3 +144,19 @@ begin
     call removeBooking(idOfBooking);
 end;
 delimiter;
+
+delimiter $$
+drop procedure if exists showBooking $$
+create procedure showBookings(`userid` int)
+begin 
+	select distinct b.`booking_id`, b.`user_id`, b.`movie_id`,seat_id, `name`, `date`, `time`, location,  title,
+    `description`, poster_url, release_date, duration, category, `national`
+    from bookings b
+    join bookedSeats bs on bs.`booking_id`=b.`booking_id`
+    join movies mv on mv.`movie_id`=b.`movie_id`
+    join users u on u.`user_id`=b.`user_id`
+    where u.`user_id`=`userid`;
+end;
+delimiter;
+-- call showBookings(3)
+ 
