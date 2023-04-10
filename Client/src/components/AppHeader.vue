@@ -16,7 +16,7 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        <i id="user_dropdown" class="fa-regular fa-circle-user"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li><button v-if="this.userStore.user" @click="logout" class="dropdown-item" type="button">Logout</button></li>
@@ -119,4 +119,9 @@ header {
     background-color: rgba(0, 136, 169, 0.8);
     color: white;
 }
+
+#user_dropdown{
+    font-size: 28px;
+}
+
 </style>
