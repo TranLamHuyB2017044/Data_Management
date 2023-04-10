@@ -1,5 +1,5 @@
 <template>
-  <div class="container play-container" v-if="film">
+  <div>
     <div class="play">
       <img :src="`${film.poster_url}`" alt="" class="movie-img" />
 
@@ -16,7 +16,7 @@
         <p>Thời lượng: {{ film.duration }} phút</p>
       </div>
     </div>
-    <div class="booking">
+    <div class="booking container">
       <h3>Lịch chiếu phim: {{ film.title }}</h3>
       <p>Địa điểm rạp: Lotte Cần Thơ</p>
       <div class="date rounded-3 d-flex justify-content-center py-2">
@@ -40,19 +40,21 @@
         </div>
       </div>
     </div>
-
-    <div v-if="showSeat" class="position-booking">
+    <div v-if="showSeat" class="position-booking container">
       <div class="seat-container pb-3">
         <div class="screen mx-auto"></div>
         <h3 class="text-center mt-2 mb-4 text-light text-uppercase">
-          Màng Hình
+          Màn Hình
         </h3>
         <div class="seats" v-for="index in 9" :key="index">
           <div
             class="seat"
             v-for="number in 12"
             :key="number"
-            @click="getPosition(index, number, $event); getCost()"
+            @click="
+              getPosition(index, number, $event);
+              getCost();
+            "
           >
             <span>{{ changeText(index) }}{{ number }}</span>
           </div>
@@ -77,7 +79,7 @@
         <hr />
         <div class="buy-ticket">
           <h3>Tạm tính</h3>
-          <h1 v-if="this.seats.length !=0">{{ getCost() }}.000đ</h1>
+          <h1 v-if="this.seats.length != 0">{{ getCost() }}.000đ</h1>
           <h1 v-else>0đ</h1>
           <button
             @click="createTicket"
@@ -112,7 +114,7 @@ export default {
       seated: [],
       choice_date: false,
       showSeat: false,
-      cost: {type: Number},
+      cost: { type: Number },
     };
   },
   methods: {
@@ -179,11 +181,10 @@ export default {
       }
     },
     getCost() {
-        const cost = 75;
-        this.cost = cost;
-        const totalCost = this.cost * this.seats.length;
-        console.log(totalCost);
-        return totalCost;
+      const cost = 75;
+      this.cost = cost;
+      const totalCost = this.cost * this.seats.length;
+      return totalCost;
     },
     showEvent(event) {
       const dateDiv = document.querySelectorAll(".day ");
@@ -230,19 +231,18 @@ export default {
 .active_seat {
   background-color: #7c7575 !important;
 }
+
 .play {
-  margin-top: 100px;
+  /* margin-top: 50px; */
   display: flex;
   padding: 24px 24px 60px 40px;
-  border-radius: 20px;
-  box-shadow: 0px 4px 3px 4px rgba(0, 0, 0, 0.62);
-  -webkit-box-shadow: 0px 4px 3px 4px rgba(0, 0, 0, 0.62);
-  -moz-box-shadow: 0px 4px 3px 4px rgba(0, 0, 0, 0.62);
-  height: 500px;
   margin-bottom: 100px;
+  z-index: 2;
+  color: #fff;
+  background-image: linear-gradient(to right,rgba(0,0,0,1)150px,rgba(0,0,0,.6)100%);
 }
-
 .play-text {
+  margin: auto;
   display: flex;
   justify-content: center;
   justify-items: center;
@@ -250,42 +250,16 @@ export default {
   position: relative;
 }
 
-.rate-btn {
-  position: absolute;
-  bottom: 120px;
-  left: 150px;
-}
-
-.rate {
-  position: absolute;
-  bottom: 200px;
-  width: 16%;
-  left: 150px;
-}
-
 .movie-img {
   border-radius: 10px;
-
-  margin: 0rem 2rem -2rem -1rem;
+  height: 400px;
+  margin: 2rem 2rem auto auto;
 }
 
-.btn-favorite {
-  padding: 5px 15px;
-  border-radius: 50px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: #ccc;
-  border: none;
-}
 
 h4 {
   margin-top: 160px;
   color: #fff !important;
-}
-
-.btn-favorite:hover {
-  opacity: 0.8;
 }
 
 .date {
