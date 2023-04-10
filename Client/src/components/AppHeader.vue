@@ -27,7 +27,7 @@
                         </li>
                         <li>
                             <button class="dropdown-item" type="button">
-                                Something else here
+                                Something else
                             </button>
                         </li>
                     </ul>
