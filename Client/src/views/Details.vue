@@ -5,7 +5,6 @@
 
       <div class="play-text">
         <h2>{{ film.title }}</h2>
-        <h2>Đạo diễn: {{ film.category }}</h2>
         <p class="my-2" style="max-width: 48.125rem">
           {{ film.description }}
         </p>
