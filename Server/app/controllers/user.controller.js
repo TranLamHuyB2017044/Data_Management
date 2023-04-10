@@ -71,3 +71,10 @@ exports.removeUserForAdmin = (req, res) => {
         });
     else res.status(300).send("You aren't admin.");
 };
+exports.getAllBookings = (req, res) => {
+    const id = req.params.id;
+    User.getAllBookings(id, (err, result) => {
+        if (err) res.send(err);
+        else res.send(result);
+    });
+};

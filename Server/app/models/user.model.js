@@ -82,4 +82,13 @@ User.getOneUserById = (id, cb) => {
         },
     );
 };
+User.getAllBookings = (id, cb) => {
+    sql.query('call showBookings(?)', id, (err, result) => {
+        if (err) {
+            cb(err, null);
+        } else {
+            cb(null, result);
+        }
+    });
+};
 module.exports = User;
