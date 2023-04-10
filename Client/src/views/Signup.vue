@@ -69,6 +69,7 @@ export default {
             username: '',
             password: '',
             email: '',
+            // fas
             admin: false,
         };
     },
