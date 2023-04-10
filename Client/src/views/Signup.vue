@@ -27,12 +27,22 @@
                         required
                         v-model="username" />
                     <input
-                        type="text"
+                        type="password"
                         name=""
                         class="form-control my-4 py-2"
                         placeholder="Password"
                         required
                         v-model="password" />
+                    <div class="d-flex align-items-center">
+                        <input
+                            id="inputAdmin"
+                            type="checkbox"
+                            class="p-3 m-2"
+                            style="width: 2rem; height: 2rem"
+                            v-model="admin" />
+                        <label for="inputAdmin">Admin</label>
+                    </div>
+
                     <div
                         class="text-center mt-3 d-flex flex-column align-items-center justify-content-center">
                         <button class="btn btn-primary" type="submit">
@@ -59,6 +69,7 @@ export default {
             username: '',
             password: '',
             email: '',
+            admin: false,
         };
     },
     methods: {
@@ -68,6 +79,7 @@ export default {
                 username: this.username,
                 email: this.email,
                 password: this.password,
+                admin: this.admin,
             };
             try {
                 await userService.create(newUser);
