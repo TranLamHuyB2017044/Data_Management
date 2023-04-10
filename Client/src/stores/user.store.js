@@ -11,6 +11,10 @@ export const useUserStore = defineStore('user', {
                 console.log(err);
             }
         },
+        checkUser() {
+            if (this.user && Object.keys(this.user).length) return true;
+            return false;
+        },
         async getLoginById() {
             try {
                 const id = localStorage.getItem('id') || null;
