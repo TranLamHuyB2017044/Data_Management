@@ -30,7 +30,7 @@
           :class="{ active_date: choice_date }"
           @click.prevent="
             getCurrentDay(getDate(index_date));
-            showEvent($event);
+            showEvent($event); //fhngmj
           "
         >
           <div class="number_date w-100">
