@@ -14,8 +14,6 @@
 
         <p>Quốc gia: {{ film.national }}</p>
         <p>Thời lượng: {{ film.duration }} phút</p>
-
-    
       </div>
     </div>
     <div class="booking">
@@ -30,7 +28,7 @@
           :class="{ active_date: choice_date }"
           @click.prevent="
             getCurrentDay(getDate(index_date));
-            showEvent($event); //fhngmj
+            showEvent($event);
           "
         >
           <div class="number_date w-100">
@@ -54,7 +52,7 @@
             class="seat"
             v-for="number in 12"
             :key="number"
-            @click="getPosition(index, number, $event)"
+            @click="getPosition(index, number, $event); getCost()"
           >
             <span>{{ changeText(index) }}{{ number }}</span>
           </div>
@@ -72,12 +70,15 @@
         <hr />
         <div class="sited">
           <h3>Chỗ ngồi</h3>
-          <span v-for="(seat,index) in seats" :key="index">  {{ seat }}<span v-if="index!==seats.length-1">, </span></span>
+          <span v-for="(seat, index) in seats" :key="index">
+            {{ seat }}<span v-if="index !== seats.length - 1">, </span></span
+          >
         </div>
         <hr />
         <div class="buy-ticket">
           <h3>Tạm tính</h3>
-          <h1>0đ</h1>
+          <h1 v-if="this.seats.length !=0">{{ getCost() }}.000đ</h1>
+          <h1 v-else>0đ</h1>
           <button
             @click="createTicket"
             type="button"
@@ -111,6 +112,7 @@ export default {
       seated: [],
       choice_date: false,
       showSeat: false,
+      cost: {type: Number},
     };
   },
   methods: {
@@ -159,42 +161,34 @@ export default {
       });
       console.log(this.seated);
     },
-    checkPositionSeat(seat_label){
-        // this.seated.forEach(seat =>{
-        //     console.log("checkPositionSeat",seat_label)
-        //     if(seat === seat_label) {
-        //         return false;
-        //     }
-        // })
-        // this.seats.forEach(seat =>{
-        //     // console.log(seat == seat_label)
-
-        //     if(seat == seat_label) {
-        //         return false;
-        //     }
-        // })
-        // return true;
-        return this.seated.includes(seat_label) || this.seats.includes(seat_label)
-
+    checkPositionSeat(seat_label) {
+      return (
+        this.seated.includes(seat_label) || this.seats.includes(seat_label)
+      );
     },
-    getPosition(index, number ,e) {
-        e.currentTarget.classList.toggle('active_seat')
+    getPosition(index, number, e) {
+      e.currentTarget.classList.toggle("active_seat");
       const seat = `${this.changeText(index)}${number}`;
-      if(!this.checkPositionSeat(seat)){
-        this.seats.push(seat)
-      }
-       else {
+      if (!this.checkPositionSeat(seat)) {
+        this.seats.push(seat);
+      } else {
         const index = this.seats.indexOf(seat);
-        if (index > -1) { 
-        this.seats.splice(index, 1);
-        } 
-       } 
-      
+        if (index > -1) {
+          this.seats.splice(index, 1);
+        }
+      }
+    },
+    getCost() {
+        const cost = 75;
+        this.cost = cost;
+        const totalCost = this.cost * this.seats.length;
+        console.log(totalCost);
+        return totalCost;
     },
     showEvent(event) {
       const dateDiv = document.querySelectorAll(".day ");
       dateDiv.forEach((date) => {
-        date.style.backgroundColor = "#989797";
+        date.style.backgroundColor = "#c1c2d6";
       });
       event.currentTarget.style.backgroundColor = "#db7373";
       this.choice_date = !this.choice_date;
