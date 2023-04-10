@@ -2,7 +2,8 @@
 USGE version 2.0
 1. Khi mới clone về (đối với máy chưa tạo database lần nào) chạy câu lệnh ALTER USER 'root'@'localhost' IDENTIFIED BY '12345';
 2. Sau đó chạy lại full database do tui đã thay đổi nhiều thuộc tính.
-3. Để thêm toàn bộ phim thì truy cập vào đường dẫn: http://localhost:3000/admin/createFilm/true, sau đó copy toàn bộ dữ liệu từ file data.json vô phần body raw của postman với định dang:
+<<<<<<< HEAD
+3. Để thêm toàn bộ phim thì truy cập vào đường dẫn: http://localhost:3000/admin/createFilm/, sau đó copy toàn bộ dữ liệu từ file data.json vô phần body raw của postman với định dạng:
 	[
 		film1,
 		flim2,
