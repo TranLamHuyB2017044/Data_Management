@@ -3,7 +3,7 @@
         <router-link to="/" class="header-title">BOOKING</router-link>
         <nav>
             <ul class="nav__links">
-                <li><a href="#">Services</a></li>
+                <li ><router-link :to="{name: 'manager'}" v-if="userStore.user.admin">User Manager</router-link></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">About</a></li>
             </ul>
@@ -51,7 +51,11 @@ export default {
             this.userStore.user = null;
             this.$router.push({ name: "login" });
         },
+        
     },
+    // async mounted() {
+    //     console.log(this.userStore.user.admin)
+    // },
 };
 </script>
 <style>
