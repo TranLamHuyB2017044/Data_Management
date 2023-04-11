@@ -213,7 +213,7 @@ export default {
         await bookingService.create(formTicket);
         myAlertService.Alert("success", "Bạn đã đặt vé thành công");
 
-        this.$router.push({ name: "myticket" });
+        this.$router.push({ name: "manager" });
       } catch (error) {
         console.log(error);
       }

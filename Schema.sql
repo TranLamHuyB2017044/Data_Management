@@ -147,16 +147,32 @@ delimiter;
 
 delimiter $$
 drop procedure if exists showBooking $$
-create procedure showBookings(`userid` int)
+create procedure showBookings(`userid` int,inout result text)
 begin 
-	select distinct b.`booking_id`, b.`user_id`, b.`movie_id`,seat_id, `name`, `date`, `time`, location,  title,
-    `description`, poster_url, release_date, duration, category, `national`
+	DECLARE v_finished INTEGER DEFAULT 0;
+    declare bookingIdCursor cursor for select `booking_id` from bookings where user_id=userid;
+    declare bookingId int;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
+    open bookingIdCursor;
+    
+    create view result as
+    select distinct b.`booking_id`, b.`user_id`, b.`movie_id`, `name`, `date`, `time`, location,  title,
+    `description`, poster_url, release_date, duration, category, `national`, seatId
     from bookings b
-    join bookedSeats bs on bs.`booking_id`=b.`booking_id`
     join movies mv on mv.`movie_id`=b.`movie_id`
     join users u on u.`user_id`=b.`user_id`
     where u.`user_id`=`userid`;
+    
+    getBooking:loop
+		fetch bookingIdCursor into bookingId;
+		IF v_finished = 1 THEN 
+			LEAVE get_email; 
+		END IF;
+	
+    update  view result set (select seat_id from bookingSeats where `booking_id`=bookingId;
+    end loop getBooking;
+    close bookingIdCursor;
 end;
 delimiter;
--- call showBookings(3)
+call showBookings(1)
  

@@ -1,52 +1,34 @@
 <template>
-  <div class="user_list" >
-    <table class="table" style="width: 900px;">
-      <thead>
-        <tr>
-          <th scope="col">User Name</th>
-          <th scope="col">Name</th>
-          <th scope="col">Film</th>
-          <th scope="col">Seated</th>
-        </tr>
-      </thead>
-      <tbody v-for="item in items">
-        <tr>
-          <td>{{ item.user_id.username }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.movie_id}}</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="user_list">
+    <div class="card" v-for="item in items" :key="item">
+      <div class="card-header">{{item.title }}</div>
+    </div>
   </div>
 </template>
 
 <script>
-
 import UserService from '../services/user.service'
-import MovieService from '../services/booking.service'
+import { useUserStore } from '../stores/user.store'
 export default {
 
+  setup() {
+    const useUser = useUserStore()
+    return { useUser };
+  },
   data() {
     return {
-      items: [],
+      items: null
     }
   },
 
   async mounted() {
-    // this.items = await UserService.getAll();
-    this.items = await MovieService.getAll();
+    const userID = this.useUser.user.user_id;
+    const response = await UserService.getAllBookings(userID)
+    //  console.log(userID)
+    this.items = response[0]
     console.log(this.items)
   },
 
-  // methods:{
-  //   getInfo(){
-  //     const query = `select * from bookings bk
-  //      join users us on bk.user_id=us.user_id
-  //       join bookedSeats bks on bk.booking_id=bks.booking_id
-  //       join movies mv on bk.movie_id=mv.movie_id`
-  //   }
-  // }
 }
 
 </script>

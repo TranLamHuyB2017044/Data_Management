@@ -7,6 +7,11 @@ class UserService {
     async getAll() {
         return (await this.api.get('/')).data;
     }
+
+    async getAllBookings(id){
+        return (await this.api.get(`/allBookings/${id}`)).data;
+    }
+
     async create(data) {
         return (await this.api.post('/', data)).data;
     }
