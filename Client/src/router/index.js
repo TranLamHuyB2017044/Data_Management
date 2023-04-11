@@ -3,8 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import Details from '../views/Details.vue';
-import myTicket from '../views/myTicket.vue';
-// import Manage from '../views/Manage.vue'
+import Manage from '../views/Manage.vue'
 import { useUserStore } from '../stores/user.store';
 import pinia from '../stores/defineStore';
 const userStore = useUserStore(pinia);
@@ -33,15 +32,10 @@ const router = createRouter({
             props: true,
         },
         {
-            path: '/myticket',
-            name: 'myticket',
-            component: myTicket,
+            path: '/admin/manager',
+            name: 'manager',
+            component: Manage,
         },
-        // {
-        //     path: '/admin/manager',
-        //     name: 'manager',
-        //     component: Manage,
-        // },
     ],
 });
 router.beforeEach(async (to, _from, next) => {

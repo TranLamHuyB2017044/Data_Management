@@ -14,4 +14,5 @@ router
     .get(userController.getOneUserById)
     .put(userController.updateUser)
     .delete(userController.removeUser);
+router.route('/allBookings/:id').get(userController.getAllBookings);
 module.exports = router;
