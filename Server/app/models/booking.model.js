@@ -59,7 +59,9 @@ Booking.getBookingById = (id, cb) => {
     );
 };
 Booking.getBookingByUserId = (id, cb) => {
-    sql.query(`Select * from bookings where user_id = ${id}`, (err, result) => {
+    const query =
+        'select distinct b.booking_id, b.user_id, b.movie_id, name, date, time, location,  title, description, poster_url, release_date, duration, category, national from bookings b join movies mv on mv.movie_id=b.movie_id join users u on u.user_id=b.user_id where u.user_id=?';
+    sql.query(query, id, (err, result) => {
         if (err) {
             cb(err, null);
         } else {

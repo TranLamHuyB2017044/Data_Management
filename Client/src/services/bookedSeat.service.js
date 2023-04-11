@@ -7,5 +7,8 @@ class MovieService {
     async getAll(movie_id, date) {
         return (await this.api.get(`/${movie_id}/${date}`)).data;
     }
+    async getSeatByBookingId(bookingid, date) {
+        return (await this.api.get(`/bookingid/${bookingid}`)).data;
+    }
 }
 export default new MovieService();
