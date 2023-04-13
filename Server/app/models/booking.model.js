@@ -19,14 +19,14 @@ var createQR = function (booking) {
 const Booking = function (booking) {
     this.user_id = booking.user_id;
     this.movie_id = booking.movie_id;
-    this.date_book = booking.dateBook;
-    this.time_book = booking.timeBook;
-    this.date_start = booking.dateStart;
-    this.time_start = booking.timeStart;
+    this.date_book = booking.date_book;
+    this.time_book = booking.time_book;
+    this.date_start = booking.date_start;
+    this.time_start = booking.time_start;
     this.location = booking.location;
 };
 Booking.createBooking = (newBooking, seats, cb) => {
-    const query = `call movie_booking(?,?,?,?,?,?)`;
+    const query = `call movie_booking(?,?,?,?,?,?,?,?)`;
     var data = [];
     seats.forEach((seat) => {
         let newB = [
@@ -34,7 +34,7 @@ Booking.createBooking = (newBooking, seats, cb) => {
             newBooking.movie_id,
             newBooking.date_book,
             newBooking.time_book,
-            newBooking.time_start,
+            newBooking.date_start,
             newBooking.time_start,
             newBooking.location,
             seat,

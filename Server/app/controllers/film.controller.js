@@ -45,24 +45,18 @@ exports.updateFilm = (req, res) => {
 };
 
 exports.removeFilm = (req, res) => {
-    const admin = req.params.admin;
-    if (admin === 'true')
-        Film.removeFilm(req.params.id, (err, result) => {
-            if (err) res.send(err);
-            else
-                res.send({
-                    message: `Deleted successfully Film have id = ${req.params.id}`,
-                });
-        });
-    else res.status(300).send("You aren't admin.");
+    Film.removeFilm(req.params.id, (err, result) => {
+        if (err) res.send(err);
+        else
+            res.send({
+                message: `Deleted successfully Film have id = ${req.params.id}`,
+            });
+    });
 };
 
 exports.removeAllFilms = (req, res) => {
-    const admin = req.params.admin;
-    if (admin === 'true')
-        Film.removeAllFilms((err, result) => {
-            if (err) res.send(err);
-            else res.send(`Deleted successfully all films.`);
-        });
-    else res.status(300).send("You aren't admin.");
+    Film.removeAllFilms((err, result) => {
+        if (err) res.send(err);
+        else res.send(`Deleted successfully all films.`);
+    });
 };
