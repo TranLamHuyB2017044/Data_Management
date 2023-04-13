@@ -38,6 +38,11 @@
                 </div>
             </div>
         </div>
+        <div class=" container d-flex justify-content-start align-items-center  my-3" v-if="showTime">
+            <div class="showtime mx-2 p-1" v-for="i in this.timeStart" :key="i">
+                <section class="timeStart" @click="getShowTime($event)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></section>
+            </div>
+        </div>
         <div v-if="showSeat" class="position-booking container">
             <div class="seat-container pb-3">
                 <div class="screen mx-auto"></div>
@@ -64,7 +69,7 @@
             <div class="temp-ticket">
                 <h3>{{ film.title }}</h3>
                 <h3 style="color: rgb(249, 115, 22)">
-                    21:10 ~ 22:56 · CN, 09/04 · Phòng chiếu 1 · 2D Phụ đề
+                     Phòng chiếu 1 · 2D Phụ đề
                 </h3>
                 <hr />
                 <div class="sited">
@@ -112,8 +117,11 @@ export default {
             seats: new Array(),
             seated: [],
             choice_date: false,
+            showTime: false,
+            timeStart:[9,13,19],
             showSeat: false,
             cost: { type: Number },
+
         };
     },
     methods: {
@@ -133,7 +141,7 @@ export default {
                 fullDay: `${date.getDate()}-${
                     date.getMonth() + 1
                 }-${date.getFullYear()}`,
-                time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                time: `${date.getHours()}:${date.getMinutes()}`,
             };
             return newdate;
         },
@@ -141,10 +149,25 @@ export default {
             const index = 64 + number;
             return String.fromCharCode(index);
         },
+        getShowTime(e){
+            this.showSeat = true;
+            return e.currentTarget.innerText
+
+        },
+        getTimeEnd(time_start){
+            const showtime = time_start*60;
+            const endtime = showtime + this.film.duration;
+            const hourEnd = endtime/60;
+            Math.floor(hourEnd)
+            const minuteEnd = endtime%60;
+            if(minuteEnd < 10)
+                return Math.floor(hourEnd) + ": " + "0"+minuteEnd;
+            else return Math.floor(hourEnd) + ":" + minuteEnd    
+        },
         async getCurrentDay(currentDay) {
             this.currentDay = currentDay;
             let fullDay = currentDay.fullDay;
-            this.showSeat = true;
+            this.showTime = true;
             this.seated = await bookedSeatService.getAll(
                 this.$route.params.id,
                 fullDay,
@@ -202,7 +225,7 @@ export default {
                     user_id: this.useUser.user.user_id,
                     movie_id: Number.parseInt(this.$route.params.id),
                     date_start: this.currentDay.fullDay,
-                    time_start: this.currentDay.time,
+                    time_start: this.getShowTime,
                     date_book: `${timeBooking.getDate()}-${
                         timeBooking.getMonth() + 1
                     }-${timeBooking.getFullYear()}`,
@@ -269,7 +292,6 @@ h4 {
     margin-top: 160px;
     color: #fff !important;
 }
-
 .date {
     background-color: #c1c2d6;
 }
@@ -280,6 +302,16 @@ h4 {
     width: 150px;
     border: 1px solid #989797;
     border-radius: 4px;
+}
+.showtime{
+    border: 1px solid #59b3e1;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.showtime i {
+    color:#59b3e1;
+    font-weight: 700;
 }
 .seat-container {
     background: #000;
