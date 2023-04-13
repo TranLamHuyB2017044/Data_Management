@@ -259,6 +259,7 @@ export default {
 .active_seat {
     background-color: #7c7575 !important;
 }
+/* ádasd */
 
 .play {
     /* margin-top: 50px;aaa */
