@@ -18,7 +18,7 @@
         <div class="booking container">
             <h3>Lịch chiếu phim: {{ film.title }}</h3>
             <p>Địa điểm rạp: Lotte Cần Thơ</p>
-            <div class="date rounded-3 d-flex justify-content-center py-2">
+            <div class="date rounded-3 d-flex justify-content-center py-2 mb-5">
                 <div
                     role="button"
                     class="day d-flex flex-column justify-content-center align-items-center mx-3 text-center py-2"
@@ -38,9 +38,9 @@
                 </div>
             </div>
         </div>
-        <div class=" container d-flex justify-content-start align-items-center  my-3" v-if="showTime">
+        <div class=" container d-flex justify-content-start align-items-center  mb-5" v-if="showTime">
             <div class="showtime mx-2 p-1" v-for="i in this.timeStart" :key="i">
-                <section class="timeStart" @click="getShowTime($event)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></section>
+                <div class="timeStart" @click.prevent="getShowTime(i)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></div>
             </div>
         </div>
         <div v-if="showSeat" class="position-booking container">
@@ -69,7 +69,7 @@
             <div class="temp-ticket">
                 <h3>{{ film.title }}</h3>
                 <h3 style="color: rgb(249, 115, 22)">
-                     Phòng chiếu 1 · 2D Phụ đề
+                    {{ this.TimeShow }}, {{this.currentDay.weekday}}, {{this.currentDay.weekday}}, Phòng chiếu 1 · 2D Phụ đề
                 </h3>
                 <hr />
                 <div class="sited">
@@ -119,6 +119,7 @@ export default {
             choice_date: false,
             showTime: false,
             timeStart:[9,13,19],
+            TimeShow:{},
             showSeat: false,
             cost: { type: Number },
 
@@ -149,9 +150,24 @@ export default {
             const index = 64 + number;
             return String.fromCharCode(index);
         },
-        getShowTime(e){
+        getShowTime(index){
             this.showSeat = true;
-            return e.currentTarget.innerText
+            const timeEnd = this.getTimeEnd(index)
+            const time = `${index}:00 ~ ${timeEnd}`
+            console.log(time);
+            this.TimeShow = time
+            console.log('seated' + this.seated);
+            const currenSeat = document.querySelectorAll('.seat span');
+            currenSeat.forEach((s) => {
+                s.parentElement.style.backgroundColor = '#db7373';
+            });
+            this.seated.forEach((seated) => {
+                currenSeat.forEach((s) => {
+                    if (s.innerHTML == seated) {
+                        s.parentElement.style.backgroundColor = '#7c7575';
+                    }
+                });
+            });
 
         },
         getTimeEnd(time_start){
@@ -172,18 +188,6 @@ export default {
                 this.$route.params.id,
                 fullDay,
             );
-            console.log(this.seated);
-            const currenSeat = document.querySelectorAll('.seat span');
-            currenSeat.forEach((s) => {
-                s.parentElement.style.backgroundColor = '#db7373';
-            });
-            this.seated.forEach((seated) => {
-                currenSeat.forEach((s) => {
-                    if (s.innerHTML == seated) {
-                        s.parentElement.style.backgroundColor = '#7c7575';
-                    }
-                });
-            });
         },
         checkPositionSeat(seat_label) {
             return (
@@ -221,11 +225,12 @@ export default {
             try {
                 const array = this.seats.map((seat) => seat);
                 const timeBooking = new Date();
+
                 const formTicket = {
                     user_id: this.useUser.user.user_id,
                     movie_id: Number.parseInt(this.$route.params.id),
                     date_start: this.currentDay.fullDay,
-                    time_start: this.getShowTime,
+                    time_start: this.TimeShow,
                     date_book: `${timeBooking.getDate()}-${
                         timeBooking.getMonth() + 1
                     }-${timeBooking.getFullYear()}`,
@@ -259,7 +264,6 @@ export default {
 .active_seat {
     background-color: #7c7575 !important;
 }
-/* ádasd */
 
 .play {
     /* margin-top: 50px;aaa */
