@@ -20,7 +20,6 @@ CREATE TABLE users (
   `username` VARCHAR(20) not null,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-   `admin` boolean NOT NULL,
   PRIMARY KEY (`user_id`)
 );
 
