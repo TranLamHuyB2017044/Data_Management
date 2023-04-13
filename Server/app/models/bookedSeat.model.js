@@ -17,7 +17,20 @@ Seat.createSeat = (newSeat, cb) => {
 };
 Seat.getSeatById = (id, cb) => {
     sql.query(
-        `Select * from bookedSeats where seat_id = ${id}`,
+        `Select * from bookedSeats where seat_id = ?`,
+        id,
+        (err, result) => {
+            if (err) {
+                cb(err, null);
+            } else {
+                cb(null, result);
+            }
+        },
+    );
+};
+Seat.getSeatByBookingId = (id, cb) => {
+    sql.query(
+        `Select * from bookedSeats where booking_id = ${id}`,
         (err, result) => {
             if (err) {
                 cb(err, null);

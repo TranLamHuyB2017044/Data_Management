@@ -6,8 +6,10 @@ exports.createBooking = async (req, res) => {
     var inforBooking = {
         user_id: data.user_id,
         movie_id: data.movie_id,
-        date: data.date,
-        time: data.time,
+        date_book: data.dateBook,
+        time_book: data.timeBook,
+        date_start:date.dateStart,
+        time_start:date.timeStart,
         location: data.location,
     };
     var inforSeats = data.seats;

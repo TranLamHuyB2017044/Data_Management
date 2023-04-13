@@ -18,7 +18,16 @@ exports.getAllSeat = (req, res) => {
         }
     });
 };
-
+exports.getByBookingId = (req, res) => {
+    const bookingId = req.params.id;
+    Seat.getSeatByBookingId(bookingId, (err, result) => {
+        if (err) res.send(err);
+        else {
+            let arr = result.map((seat) => seat.seat_id);
+            res.send(arr);
+        }
+    });
+};
 exports.getOneSeat = (req, res) => {
     Seat.getSeatById(req.params.id, (err, result) => {
         if (err) res.send(err);
