@@ -32,7 +32,7 @@ const router = createRouter({
             props: true,
         },
         {
-            path: '/admin/manager',
+            path: '/manager',
             name: 'manager',
             component: Manage,
         },
@@ -47,3 +47,4 @@ router.beforeEach(async (to, _from, next) => {
     else next();
 });
 export default router;
+// hihi
