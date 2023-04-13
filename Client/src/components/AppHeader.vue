@@ -28,6 +28,14 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <li>
+                        <router-link
+                            to="/edit"
+                            class="dropdown-item"
+                            type="button">
+                            Edit Your Profile
+                        </router-link>
+                    </li>
+                    <li>
                         <button
                             v-if="this.userStore.user"
                             @click="logout"

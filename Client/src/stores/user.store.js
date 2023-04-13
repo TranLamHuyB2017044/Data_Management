@@ -4,6 +4,9 @@ export const useUserStore = defineStore('user', {
     state: () => ({ user: null }),
     getters: {},
     actions: {
+        async update(id, data) {
+            await userService.update(id, data);
+        },
         async getLogin(username, password) {
             try {
                 this.user = await userService.getLogin(username, password);

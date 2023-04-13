@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import Details from '../views/Details.vue';
+import Edit from '../views/Edit.vue';
 import Manage from '../views/Manage.vue';
 import { useUserStore } from '../stores/user.store';
 import pinia from '../stores/defineStore';
@@ -35,6 +36,11 @@ const router = createRouter({
             path: '/manager',
             name: 'manager',
             component: Manage,
+        },
+        {
+            path: '/edit',
+            name: 'edit',
+            component: Edit,
         },
     ],
 });
