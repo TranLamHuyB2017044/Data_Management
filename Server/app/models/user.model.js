@@ -6,7 +6,6 @@ const User = function (user) {
     this.username = user.username;
     this.password = user.password;
     this.email = user.email;
-    this.admin = user.admin;
 };
 User.createUser = (newUser, cb) => {
     const query = `INSERT INTO users set ?`;

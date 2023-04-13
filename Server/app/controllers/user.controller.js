@@ -8,13 +8,10 @@ exports.getAllUser = (req, res) => {
     });
 };
 exports.removeAllUser = (req, res) => {
-    const admin = req.params.admin;
-    if (admin === 'true')
-        User.removeAllUser((err, result) => {
-            if (err) res.send(err);
-            else res.send('Deleted all users.');
-        });
-    else res.status(300).send("You aren't admin.");
+    User.removeAllUser((err, result) => {
+        if (err) res.send(err);
+        else res.send('Deleted all users.');
+    });
 };
 exports.createUser = (req, res) => {
     var newUser = new User(req.body);
@@ -61,14 +58,11 @@ exports.removeUser = (req, res) => {
 };
 exports.removeUserForAdmin = (req, res) => {
     const id = req.params.id;
-    const admin = req.params.admin;
-    if (admin === 'true')
-        User.removeUser(id, (err, task) => {
-            if (err) res.send(err);
-            else
-                res.send({
-                    message: `Deleted successfully User have id = ${req.params.id}`,
-                });
-        });
-    else res.status(300).send("You aren't admin.");
+    User.removeUser(id, (err, task) => {
+        if (err) res.send(err);
+        else
+            res.send({
+                message: `Deleted successfully User have id = ${req.params.id}`,
+            });
+    });
 };

@@ -20,7 +20,6 @@ CREATE TABLE users (
   `username` VARCHAR(20) not null,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-   `admin` boolean NOT NULL,
   PRIMARY KEY (`user_id`)
 );
 
@@ -107,7 +106,7 @@ begin
 	start transaction;
     select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
     if cnt = 0 then
-		insert into bookings(`user_id`,`movie_id`,`date_book`,`time_book`, `date_start`,`time_start`,`location`) value (`new_user_id`,`new_movie_id`,`new_date_book`,`new_time_book`,`date_start`,`time_start`,`new_location`);
+		insert into bookings(`user_id`,`movie_id`,`date_book`,`time_book`, `date_start`,`time_start`,`location`) value (`new_user_id`,`new_movie_id`,`new_date_book`,`new_time_book`,`new_date_start`,`new_time_start`,`new_location`);
     end if;
     
     -- check release date of film: just allow booking if release >= current date
@@ -124,7 +123,7 @@ begin
 	end if;
 end;
 delimeter;
--- call movie_booking(16,170,'13-04-2023','10:07','02-04-2023','20:07', 'Can Tho','E18'); 
+-- call movie_booking(2,4,'13-04-2023','10:01','02-04-2023','20:07', 'Can Tho','E8'); 
 
 
  delimiter $$
