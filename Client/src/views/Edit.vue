@@ -1,73 +1,58 @@
 <template>
-    <div class="container">
-      <form class="row g-3 form" @submit.prevent="updateUser">
-        <h2>User Profile <br/></h2>
-        <div class="col-md-6">
-          <label for="firstname" class="form-label">FirstName</label>
-          <input
-            v-model="this.user.firstName"
-            type="text"
-            class="form-control"
-            id="firstname"
-          />
-        </div>
-        <div class="col-md-6">
-          <label for="lastname" class="form-label">LastName</label>
-          <input
-            v-model="this.user.lastName"
-            type="text"
-            class="form-control"
-            id="lastname"
-          />
-        </div>
-        <!-- <div class="col-12">
-          <label for="password" class="form-label">PassWord</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            v-model="this.newPass"
-          />
-        </div> -->
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-      </form>
-    </div>
-  </template>
-  <script>
-  import { useUserStore } from "../stores/user.store";
-  export default {
-    setup() {
-      const useUser = useUserStore();
-      return { useUser };
+  <div class="container">
+    <form class="row g-3 form" @submit.prevent="updateUser">
+      <h2>User Profile <br /></h2>
+      <div class="col-md-6">
+        <label for="name" class="form-label">Name</label>
+        <input v-model="this.user.name" type="text" class="form-control" id="name" />
+      </div>
+      <div class="col-md-6">
+        <label for="username" class="form-label">Username</label>
+        <input v-model="this.user.username" type="text" class="form-control" id="username" />
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password</label>
+        <input v-model="this.user.password" type="password" class="form-control" id="password" />
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input v-model="this.user.email" type="text" class="form-control" id="email" />
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</template>
+<script>
+import { useUserStore } from "../stores/user.store";
+export default {
+  setup() {
+    const useUser = useUserStore();
+    return { useUser };
+  },
+  data() {
+    return {
+      user: {},
+    };
+  },
+  methods: {
+    async updateUser() {
+      try {
+        await this.useUser.update(this.useUser.user.id, this.useUser.user); 
+        alert("User update successfully!!");
+        this.$forceUpdate();
+      } catch (error) {
+        console.error(error);
+      }
     },
-    data() {
-      return {
-        user: {},
-        newPass: "",
-      };
-    },
-    methods: {
-      async updateUser() {
-        try {
-          alert("User update successfully!!");
-          this.useUser.user.password = this.newPass;
-          await this.useUser.update(this.useUser.user._id, this.useUser.user);
-        } catch (error) {
-          console.error(error);
-        }
-      },
-    },
-    async mounted() {
-      const userID = localStorage.getItem("id");
-      await this.useUser.getLoginById(userID);
-      this.user = this.useUser.user;
-      console.log(userID)
-      console.log(this.useUser.user);
-    },
-  };
-  </script>
+  },
+  async mounted() {
+    await this.useUser.getLoginById();
+    this.user = this.useUser.user;
+  },
+};
+</script>
   <!-- <style scoped>
   .container{
     display: flex;
