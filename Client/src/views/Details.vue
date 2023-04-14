@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="play">
+        <div id="play" :bg="setBackGround(film.poster_url)">
             <img :src="`${film.poster_url}`" alt="" class="movie-img" />
 
             <div class="play-text">
@@ -18,7 +18,7 @@
         <div class="booking container">
             <h3>Lịch chiếu phim: {{ film.title }}</h3>
             <p>Địa điểm rạp: Lotte Cần Thơ</p>
-            <div class="date rounded-3 d-flex justify-content-center py-2 mb-5">
+            <div class="date rounded-3 d-flex justify-content-center py-2 ">
                 <div
                     role="button"
                     class="day d-flex flex-column justify-content-center align-items-center mx-3 text-center py-2"
@@ -38,15 +38,15 @@
                 </div>
             </div>
         </div>
-        <div class=" container d-flex justify-content-start align-items-center  mb-5" v-if="showTime">
-            <div class="showtime mx-2 p-1" v-for="i in this.timeStart" :key="i">
-                <div class="timeStart" @click.prevent="getShowTime(i)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></div>
+        <div class=" container d-flex justify-content-start align-items-center " v-if="showTime">
+            <div class="showtime mx-2 my-3 " v-for="i in this.timeStartArr" :key="i">
+                <div class="timeStartArr" @click.prevent="getShowTime(i)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></div>
             </div>
         </div>
         <div v-if="showSeat" class="position-booking container">
-            <div class="seat-container pb-3">
+            <div class="seat-container ">
                 <div class="screen mx-auto"></div>
-                <h3 class="text-center mt-2 mb-4 text-light text-uppercase">
+                <h3 class="text-center mt-0 mb-4 text-light text-uppercase">
                     Màn Hình
                 </h3>
                 <div class="seats" v-for="index in 9" :key="index">
@@ -69,7 +69,7 @@
             <div class="temp-ticket">
                 <h3>{{ film.title }}</h3>
                 <h3 style="color: rgb(249, 115, 22)">
-                    {{ this.TimeShow }}, {{this.currentDay.weekday}}, {{this.currentDay.weekday}}, Phòng chiếu 1 · 2D Phụ đề
+                    {{ this.timeStart }}, {{this.datestart.weekday}}, {{this.datestart.weekday}}, Phòng chiếu 1 · 2D Phụ đề
                 </h3>
                 <hr />
                 <div class="sited">
@@ -113,13 +113,13 @@ export default {
     data() {
         return {
             film: {},
-            currentDay: {},
+            datestart: {},
             seats: new Array(),
             seated: [],
             choice_date: false,
             showTime: false,
-            timeStart:[9,13,19],
-            TimeShow:{},
+            timeStartArr:[9,13,19],
+            timeStart:"",
             showSeat: false,
             cost: { type: Number },
 
@@ -150,13 +150,16 @@ export default {
             const index = 64 + number;
             return String.fromCharCode(index);
         },
-        getShowTime(index){
+        async getShowTime(index){
+            
             this.showSeat = true;
-            const timeEnd = this.getTimeEnd(index)
-            const time = `${index}:00 ~ ${timeEnd}`
-            console.log(time);
-            this.TimeShow = time
-            console.log('seated' + this.seated);
+            const time = `${index}:00`
+            this.timeStart = time
+            this.seated = await bookedSeatService.getAll(
+                this.$route.params.id,
+                this.datestart.fullDay,
+                this.timeStart
+            );
             const currenSeat = document.querySelectorAll('.seat span');
             currenSeat.forEach((s) => {
                 s.parentElement.style.backgroundColor = '#db7373';
@@ -180,14 +183,12 @@ export default {
                 return Math.floor(hourEnd) + ": " + "0"+minuteEnd;
             else return Math.floor(hourEnd) + ":" + minuteEnd    
         },
-        async getCurrentDay(currentDay) {
-            this.currentDay = currentDay;
-            let fullDay = currentDay.fullDay;
+        async getCurrentDay(date_start) {
+            this.datestart = date_start;
+            let fullDay = date_start.fullDay;
             this.showTime = true;
-            this.seated = await bookedSeatService.getAll(
-                this.$route.params.id,
-                fullDay,
-            );
+
+            
         },
         checkPositionSeat(seat_label) {
             return (
@@ -229,8 +230,8 @@ export default {
                 const formTicket = {
                     user_id: this.useUser.user.user_id,
                     movie_id: Number.parseInt(this.$route.params.id),
-                    date_start: this.currentDay.fullDay,
-                    time_start: this.TimeShow,
+                    date_start: this.datestart.fullDay,
+                    time_start: this.timeStart,
                     date_book: `${timeBooking.getDate()}-${
                         timeBooking.getMonth() + 1
                     }-${timeBooking.getFullYear()}`,
@@ -252,6 +253,11 @@ export default {
                 console.log(error);
             }
         },
+        async setBackGround(url){
+            const play=await document.querySelector('.play-text')
+            console.log(play,url);
+            // play.style.color ="red"
+        }
     },
 
     async mounted() {
@@ -265,18 +271,13 @@ export default {
     background-color: #7c7575 !important;
 }
 
-.play {
+#play {
     /* margin-top: 50px;aaa */
     display: flex;
     padding: 24px 24px 60px 40px;
     margin-bottom: 100px;
     z-index: 2;
     color: #fff;
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 150px,
-        rgba(0, 0, 0, 0.6) 100%
-    );
 }
 .play-text {
     margin: auto;
@@ -323,7 +324,6 @@ h4 {
     padding: 10px 0;
 }
 .position-booking {
-    margin: 20px auto;
     border-radius: 10px;
 }
 .seats {

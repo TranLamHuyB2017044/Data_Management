@@ -8,9 +8,10 @@ exports.createSeat = (req, res) => {
     });
 };
 exports.getAllSeat = (req, res) => {
-    const date = req.params.date;
+    const date = req.body.date_start;
+    const time = req.body.time_start;
     const movie_id = req.params.movie_id;
-    Seat.getAllSeat(movie_id, date, (err, result) => {
+    Seat.getAllSeat(movie_id, date,time, (err, result) => {
         if (err) res.send(err);
         else {
             let arr = result.map((seat) => seat.seat_id);
