@@ -104,7 +104,7 @@ begin
     declare validDate boolean default true;
     declare releaseDate varchar(10);
 	start transaction;
-    select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
+    select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `location`=`new_location`;
     if cnt = 0 then
 		insert into bookings(`user_id`,`movie_id`,`date_book`,`time_book`, `date_start`,`time_start`,`location`) value (`new_user_id`,`new_movie_id`,`new_date_book`,`new_time_book`,`new_date_start`,`new_time_start`,`new_location`);
     end if;
@@ -113,10 +113,10 @@ begin
     select `release_date` into releaseDate from movies where `movie_id`=`new_movie_id`;
 	select checkReleaseDate(releaseDate) into validDate;
     -- check booked seats: 2 booking users at the same, if user1 booked with the same seats before user2 then booking user2 will cancel.
-    select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
+    select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`;
     select * from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
     if validDate = true and cnt=0 then
-		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
+		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
 		insert into bookedSeats(`seat_id`,`booking_id`) value (`new_seat_id`,`idOfBooking`);
 		commit;
 	else rollback;

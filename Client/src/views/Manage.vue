@@ -1,6 +1,10 @@
 <template>
     <div style="width: 80%" class="mx-auto" v-if="this.items">
-        <div class="card m-4" v-for="item in items" :key="item.movie_id">
+        <div
+            class="card m-4"
+            v-for="item in items"
+            :key="item.movie_id"
+            style="background-color: lightgoldenrodyellow">
             <router-link
                 :to="{ name: 'details', params: { id: item.movie_id } }">
                 <div class="row">
@@ -121,6 +125,7 @@ export default {
     },
     async mounted() {
         await this.getAllBookings();
+        console.log(this.items);
     },
 };
 </script>

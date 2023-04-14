@@ -24,10 +24,9 @@
                     class="day d-flex flex-column justify-content-center align-items-center mx-3 text-center py-2"
                     v-for="index_date in 7"
                     :key="index_date"
-                    :class="{ active_date: choice_date }"
                     @click.prevent="
                         getBookDay(getDate(index_date));
-                        showEvent($event);
+                        showAcctiveDay($event);
                     ">
                     <div class="number_date w-100">
                         <span class="">{{ getDate(index_date).day }}</span>
@@ -38,13 +37,15 @@
                 </div>
             </div>
             <div
-                class="container d-flex justify-content-start align-items-center"
+                class="container d-flex justify-content-center align-items-center"
                 v-if="showTime">
                 <div
                     class="showtime mx-2 my-3"
                     v-for="i in this.timeStartArr"
                     :key="i">
-                    <div class="timeStartArr" @click.prevent="getShowTime(i)">
+                    <div
+                        class="timeStartArr p-2"
+                        @click.prevent="getShowTime(i, $event)">
                         <i>
                             <span style="color: #0284c7">{{ i }}:00</span> ~
                             {{ getTimeEnd(i) }}</i
@@ -53,14 +54,17 @@
                 </div>
             </div>
             <div v-if="showSeat" class="position-booking container">
-                <div class="seat-container">
+                <div class="seat-container p-3">
                     <div class="screen mx-auto"></div>
                     <h3 class="text-center mt-0 mb-4 text-light text-uppercase">
                         Màn Hình
                     </h3>
-                    <div class="seats" v-for="index in 9" :key="index">
+                    <div
+                        class="seats d-flex justify-content-center align-items-center"
+                        v-for="index in 9"
+                        :key="index">
                         <div
-                            class="seat"
+                            class="seat m-1"
                             v-for="number in 12"
                             :key="number"
                             @click="
@@ -70,11 +74,23 @@
                             <span>{{ changeText(index) }}{{ number }}</span>
                         </div>
                     </div>
-                    <div class="seat-inform">
-                        <div class="seat-notices"></div>
-                        <h5 class="seat-inform-text" style="color: #fff">
-                            Đã đặt
-                        </h5>
+                    <div class="seat-inform text-center">
+                        <div
+                            class="d-flex flex-column justify-content-center align-items-center mx-1">
+                            <div class="seat-notices"></div>
+                            <h5 class="seat-inform-text" style="color: #fff">
+                                Đã đặt
+                            </h5>
+                        </div>
+                        <div
+                            class="d-flex flex-column justify-content-center align-items-center mx-1">
+                            <div
+                                class="seat-notices"
+                                style="background-color: #db7373"></div>
+                            <h5 class="seat-inform-text" style="color: #fff">
+                                Chưa đặt
+                            </h5>
+                        </div>
                     </div>
                 </div>
                 <div class="temp-ticket">
@@ -164,7 +180,8 @@ export default {
             const index = 64 + number;
             return String.fromCharCode(index);
         },
-        async getShowTime(index) {
+        async getShowTime(index, event) {
+            this.showAcctiveTime(event);
             this.showSeat = true;
             const time = `${index}:00`;
             this.timeStart = time;
@@ -234,13 +251,19 @@ export default {
             const totalCost = this.cost * this.seats.length;
             return totalCost;
         },
-        showEvent(event) {
+        showAcctiveDay(event) {
             const dateDiv = document.querySelectorAll('.day ');
             dateDiv.forEach((date) => {
-                date.style.backgroundColor = '#c1c2d6';
+                date.classList.remove('active_bookDay');
             });
-            event.currentTarget.style.backgroundColor = '#db7373';
-            this.choice_date = !this.choice_date;
+            event.currentTarget.classList.add('active_bookDay');
+        },
+        showAcctiveTime(event) {
+            const timeDiv = document.querySelectorAll('.timeStartArr ');
+            timeDiv.forEach((time) => {
+                time.classList.remove('active_bookTime');
+            });
+            event.currentTarget.classList.add('active_bookTime');
         },
         async createTicket() {
             try {
@@ -282,7 +305,13 @@ export default {
 .active_seat {
     background-color: #7c7575 !important;
 }
-
+.active_bookDay {
+    background-color: #a7a4a4aa;
+}
+.active_bookTime {
+    background-color: blanchedalmond;
+    border-radius: 5px;
+}
 #play {
     /* margin-top: 50px;aaa */
     display: flex;
@@ -353,15 +382,7 @@ h4 {
 .position-booking {
     border-radius: 10px;
 }
-.seats {
-    display: flex;
-    width: 60%;
-    justify-content: center;
-    align-items: center;
-    margin: 7px auto;
-    flex-wrap: wrap;
-    gap: 7px;
-}
+
 .seat {
     border: 1px #000;
     color: #fff;
