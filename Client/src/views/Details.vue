@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="play" :bg="setBackGround(film.poster_url)">
+        <div id="play">
             <img :src="`${film.poster_url}`" alt="" class="movie-img" />
 
             <div class="play-text">
@@ -15,10 +15,10 @@
                 <p>Thời lượng: {{ film.duration }} phút</p>
             </div>
         </div>
-        <div class="booking container">
+        <div class="booking container my-3">
             <h3>Lịch chiếu phim: {{ film.title }}</h3>
             <p>Địa điểm rạp: Lotte Cần Thơ</p>
-            <div class="date rounded-3 d-flex justify-content-center py-2 ">
+            <div class="date rounded-3 d-flex justify-content-center py-2">
                 <div
                     role="button"
                     class="day d-flex flex-column justify-content-center align-items-center mx-3 text-center py-2"
@@ -26,7 +26,7 @@
                     :key="index_date"
                     :class="{ active_date: choice_date }"
                     @click.prevent="
-                        getCurrentDay(getDate(index_date));
+                        getBookDay(getDate(index_date));
                         showEvent($event);
                     ">
                     <div class="number_date w-100">
@@ -37,61 +37,76 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class=" container d-flex justify-content-start align-items-center " v-if="showTime">
-            <div class="showtime mx-2 my-3 " v-for="i in this.timeStartArr" :key="i">
-                <div class="timeStartArr" @click.prevent="getShowTime(i)"><i> <span style="color: #0284c7;">{{i}}:00</span> ~ {{ getTimeEnd(i) }}</i></div>
-            </div>
-        </div>
-        <div v-if="showSeat" class="position-booking container">
-            <div class="seat-container ">
-                <div class="screen mx-auto"></div>
-                <h3 class="text-center mt-0 mb-4 text-light text-uppercase">
-                    Màn Hình
-                </h3>
-                <div class="seats" v-for="index in 9" :key="index">
-                    <div
-                        class="seat"
-                        v-for="number in 12"
-                        :key="number"
-                        @click="
-                            getPosition(index, number, $event);
-                            getCost();
-                        ">
-                        <span>{{ changeText(index) }}{{ number }}</span>
+            <div
+                class="container d-flex justify-content-start align-items-center"
+                v-if="showTime">
+                <div
+                    class="showtime mx-2 my-3"
+                    v-for="i in this.timeStartArr"
+                    :key="i">
+                    <div class="timeStartArr" @click.prevent="getShowTime(i)">
+                        <i>
+                            <span style="color: #0284c7">{{ i }}:00</span> ~
+                            {{ getTimeEnd(i) }}</i
+                        >
                     </div>
                 </div>
-                <div class="seat-inform">
-                    <div class="seat-notices"></div>
-                    <h5 class="seat-inform-text" style="color: #fff">Đã đặt</h5>
-                </div>
             </div>
-            <div class="temp-ticket">
-                <h3>{{ film.title }}</h3>
-                <h3 style="color: rgb(249, 115, 22)">
-                    {{ this.timeStart }}, {{this.datestart.weekday}}, {{this.datestart.weekday}}, Phòng chiếu 1 · 2D Phụ đề
-                </h3>
-                <hr />
-                <div class="sited">
-                    <h3>Chỗ ngồi</h3>
-                    <span v-for="(seat, index) in seats" :key="index">
-                        {{ seat
-                        }}<span v-if="index !== seats.length - 1"
-                            >,
-                        </span></span
-                    >
+            <div v-if="showSeat" class="position-booking container">
+                <div class="seat-container">
+                    <div class="screen mx-auto"></div>
+                    <h3 class="text-center mt-0 mb-4 text-light text-uppercase">
+                        Màn Hình
+                    </h3>
+                    <div class="seats" v-for="index in 9" :key="index">
+                        <div
+                            class="seat"
+                            v-for="number in 12"
+                            :key="number"
+                            @click="
+                                getPosition(index, number, $event);
+                                getCost();
+                            ">
+                            <span>{{ changeText(index) }}{{ number }}</span>
+                        </div>
+                    </div>
+                    <div class="seat-inform">
+                        <div class="seat-notices"></div>
+                        <h5 class="seat-inform-text" style="color: #fff">
+                            Đã đặt
+                        </h5>
+                    </div>
                 </div>
-                <hr />
-                <div class="buy-ticket">
-                    <h3>Tạm tính</h3>
-                    <h1 v-if="this.seats.length != 0">{{ getCost() }}.000đ</h1>
-                    <h1 v-else>0đ</h1>
-                    <button
-                        @click="createTicket"
-                        type="button"
-                        class="btn btn-lg btn-primary">
-                        Mua vé
-                    </button>
+                <div class="temp-ticket">
+                    <h3>{{ film.title }}</h3>
+                    <h3 style="color: rgb(249, 115, 22)">
+                        {{ this.timeStart }}, {{ this.datestart.weekday }},
+                        {{ this.datestart.weekday }}, Phòng chiếu 1 · 2D Phụ đề
+                    </h3>
+                    <hr />
+                    <div class="sited">
+                        <h3>Chỗ ngồi</h3>
+                        <span v-for="(seat, index) in seats" :key="index">
+                            {{ seat
+                            }}<span v-if="index !== seats.length - 1"
+                                >,
+                            </span></span
+                        >
+                    </div>
+                    <hr />
+                    <div class="buy-ticket">
+                        <h3>Tạm tính</h3>
+                        <h1 v-if="this.seats.length != 0">
+                            {{ getCost() }}.000đ
+                        </h1>
+                        <h1 v-else>0đ</h1>
+                        <button
+                            @click="createTicket"
+                            type="button"
+                            class="btn btn-lg btn-primary">
+                            Mua vé
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,11 +133,10 @@ export default {
             seated: [],
             choice_date: false,
             showTime: false,
-            timeStartArr:[9,13,19],
-            timeStart:"",
+            timeStartArr: [9, 11, 13, 14, 16, 19],
+            timeStart: '',
             showSeat: false,
             cost: { type: Number },
-
         };
     },
     methods: {
@@ -150,15 +164,14 @@ export default {
             const index = 64 + number;
             return String.fromCharCode(index);
         },
-        async getShowTime(index){
-            
+        async getShowTime(index) {
             this.showSeat = true;
-            const time = `${index}:00`
-            this.timeStart = time
+            const time = `${index}:00`;
+            this.timeStart = time;
             this.seated = await bookedSeatService.getAll(
                 this.$route.params.id,
                 this.datestart.fullDay,
-                this.timeStart
+                this.timeStart,
             );
             const currenSeat = document.querySelectorAll('.seat span');
             currenSeat.forEach((s) => {
@@ -171,24 +184,31 @@ export default {
                     }
                 });
             });
-
         },
-        getTimeEnd(time_start){
-            const showtime = time_start*60;
+        getTimeEnd(time_start) {
+            const showtime = time_start * 60;
             const endtime = showtime + this.film.duration;
-            const hourEnd = endtime/60;
-            Math.floor(hourEnd)
-            const minuteEnd = endtime%60;
-            if(minuteEnd < 10)
-                return Math.floor(hourEnd) + ": " + "0"+minuteEnd;
-            else return Math.floor(hourEnd) + ":" + minuteEnd    
+            const hourEnd = endtime / 60;
+            Math.floor(hourEnd);
+            const minuteEnd = endtime % 60;
+            if (minuteEnd < 10)
+                return Math.floor(hourEnd) + ': ' + '0' + minuteEnd;
+            else return Math.floor(hourEnd) + ':' + minuteEnd;
         },
-        async getCurrentDay(date_start) {
+        async getBookDay(date_start) {
             this.datestart = date_start;
             let fullDay = date_start.fullDay;
             this.showTime = true;
-
-            
+        },
+        getCurrentDay() {
+            const timeBooking = new Date();
+            var day = {
+                currentDay: `${timeBooking.getDate()}-${
+                    timeBooking.getMonth() + 1
+                }-${timeBooking.getFullYear()}`,
+                currentTime: timeBooking.toLocaleTimeString('it-IT'),
+            };
+            return day;
         },
         checkPositionSeat(seat_label) {
             return (
@@ -225,17 +245,14 @@ export default {
         async createTicket() {
             try {
                 const array = this.seats.map((seat) => seat);
-                const timeBooking = new Date();
-
+                const timeBooking = this.getCurrentDay();
                 const formTicket = {
                     user_id: this.useUser.user.user_id,
                     movie_id: Number.parseInt(this.$route.params.id),
                     date_start: this.datestart.fullDay,
                     time_start: this.timeStart,
-                    date_book: `${timeBooking.getDate()}-${
-                        timeBooking.getMonth() + 1
-                    }-${timeBooking.getFullYear()}`,
-                    time_book: timeBooking.toLocaleTimeString('it-IT'),
+                    date_book: timeBooking.currentDay,
+                    time_book: timeBooking.currentTime,
                     location: 'Lotte Can Tho',
                     seats: array,
                 };
@@ -253,11 +270,6 @@ export default {
                 console.log(error);
             }
         },
-        async setBackGround(url){
-            const play=await document.querySelector('.play-text')
-            console.log(play,url);
-            // play.style.color ="red"
-        }
     },
 
     async mounted() {
@@ -277,7 +289,22 @@ export default {
     padding: 24px 24px 60px 40px;
     margin-bottom: 100px;
     z-index: 2;
-    color: #fff;
+    color: #ffffff;
+    background-image: linear-gradient(
+        to right top,
+        #221e20,
+        #292027,
+        #2e2230,
+        #2f253b,
+        #2c2947,
+        #2d2947,
+        #2f2948,
+        #302948,
+        #35243c,
+        #352131,
+        #321e28,
+        #2d1d21
+    );
 }
 .play-text {
     margin: auto;
@@ -309,14 +336,14 @@ h4 {
     border: 1px solid #989797;
     border-radius: 4px;
 }
-.showtime{
+.showtime {
     border: 1px solid #59b3e1;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .showtime i {
-    color:#59b3e1;
+    color: #59b3e1;
     font-weight: 700;
 }
 .seat-container {
