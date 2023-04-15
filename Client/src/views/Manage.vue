@@ -125,7 +125,6 @@ export default {
     },
     async mounted() {
         await this.getAllBookings();
-        console.log(this.items);
     },
 };
 </script>
