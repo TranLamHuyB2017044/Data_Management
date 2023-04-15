@@ -95,9 +95,9 @@
                 </div>
                 <div class="temp-ticket">
                     <h3>{{ film.title }}</h3>
-                    <h3 style="color: rgb(249, 115, 22)">
+                    <h3 style="color: rgb(62 88 225)">
                         {{ this.timeStart }}, {{ this.datestart.weekday }},
-                        {{ this.datestart.weekday }}, Phòng chiếu 1 · 2D Phụ đề
+                        Phòng chiếu 1 · 2D Phụ đề
                     </h3>
                     <hr />
                     <div class="sited">
@@ -279,7 +279,6 @@ export default {
                     location: 'Lotte Can Tho',
                     seats: array,
                 };
-                console.log(formTicket);
                 if (this.seats.length === 0) {
                     myAlertService.Alert('error', 'Bạn chưa chọn ghế');
                     return;
