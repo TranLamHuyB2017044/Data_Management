@@ -17,7 +17,8 @@ Seat.createSeat = (newSeat, cb) => {
 };
 Seat.getSeatById = (id, cb) => {
     sql.query(
-        `Select * from bookedSeats where seat_id = ${id}`,
+        `Select * from bookedSeats where seat_id = ?`,
+        id,
         (err, result) => {
             if (err) {
                 cb(err, null);
@@ -27,10 +28,22 @@ Seat.getSeatById = (id, cb) => {
         },
     );
 };
-Seat.getAllSeat = (movie_id, date, cb) => {
+Seat.getSeatByBookingId = (id, cb) => {
     sql.query(
-        'Select seat_id from bookings b join bookedSeats bs on bs.booking_id = b.booking_id where movie_id=? and date=?',
-        [movie_id, date],
+        `Select * from bookedSeats where booking_id = ${id}`,
+        (err, result) => {
+            if (err) {
+                cb(err, null);
+            } else {
+                cb(null, result);
+            }
+        },
+    );
+};
+Seat.getAllSeat = (movie_id, date,time, cb) => {
+    sql.query(
+        'Select seat_id from bookings b join bookedSeats bs on bs.booking_id = b.booking_id where movie_id=? and date_start=? and time_start=?',
+        [movie_id, date, time],
         (err, result) => {
             if (err) {
                 cb(err, null);

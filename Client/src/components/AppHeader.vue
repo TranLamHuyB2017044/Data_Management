@@ -3,7 +3,11 @@
         <router-link to="/" class="header-title">BOOKING</router-link>
         <nav>
             <ul class="nav__links">
-                <li ><router-link :to="{name: 'manager'}" v-if="userStore.user.admin">User Manager</router-link></li>
+                <li>
+                    <router-link :to="{ name: 'manager' }"
+                        >User Manager</router-link
+                    >
+                </li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">About</a></li>
             </ul>
@@ -13,30 +17,53 @@
                 this.userStore.user.name
             }}</span>
             <router-link v-else to="/login" class="cta">Login</router-link>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i id="user_dropdown" class="fa-regular fa-circle-user"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button v-if="this.userStore.user" @click="logout" class="dropdown-item" type="button">Logout</button></li>
-                        <li>
-                            <router-link to="/myticket" class="dropdown-item" type="button">
-                                My Ticket
-                            </router-link>
-                        </li>
-                        <li>
-                            <button class="dropdown-item" type="button">
-                                Something else
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-        </div> 
+            <div class="dropdown">
+                <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i id="user_dropdown" class="fa-regular fa-circle-user"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li>
+                        <router-link
+                            to="/edit"
+                            class="dropdown-item"
+                            type="button">
+                            Edit Your Profile
+                        </router-link>
+                    </li>
+                    <li>
+                        <button
+                            v-if="this.userStore.user"
+                            @click="logout"
+                            class="dropdown-item"
+                            type="button">
+                            Logout
+                        </button>
+                    </li>
+                    <li>
+                        <router-link
+                            to="/myticket"
+                            class="dropdown-item"
+                            type="button">
+                            My Ticket
+                        </router-link>
+                    </li>
+                    <li>
+                        <button class="dropdown-item" type="button">
+                            Something else
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
 </template>
 <script>
-import { useUserStore } from "../stores/user.store";
+import { useUserStore } from '../stores/user.store';
 export default {
     setup() {
         const userStore = useUserStore();
@@ -47,11 +74,10 @@ export default {
     },
     methods: {
         logout() {
-            localStorage.removeItem("id");
+            localStorage.removeItem('id');
             this.userStore.user = null;
-            this.$router.push({ name: "login" });
+            this.$router.push({ name: 'login' });
         },
-        
     },
     // async mounted() {
     //     console.log(this.userStore.user.admin)
@@ -86,7 +112,7 @@ header {
 
 .nav__links a,
 .cta {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: #edf0f1;
     text-decoration: none;
@@ -124,8 +150,7 @@ header {
     color: white;
 }
 
-#user_dropdown{
+#user_dropdown {
     font-size: 28px;
 }
-
 </style>

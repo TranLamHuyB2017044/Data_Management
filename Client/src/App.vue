@@ -3,6 +3,8 @@ import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import { useUserStore } from './stores/user.store';
 import { useFilmStore } from './stores/film.store';
+import bookedSeatService from './services/bookedSeat.service';
+import bookingService from './services/booking.service';
 export default {
     setup() {
         const userStore = useUserStore();

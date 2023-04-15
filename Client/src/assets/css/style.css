@@ -1,5 +1,6 @@
 a{
     text-decoration: none;
+    color: unset;
 }
 input{
     background-color: #bea7a7 !important;

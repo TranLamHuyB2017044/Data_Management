@@ -20,7 +20,6 @@ CREATE TABLE users (
   `username` VARCHAR(20) not null,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-   `admin` boolean NOT NULL,
   PRIMARY KEY (`user_id`)
 );
 
@@ -28,8 +27,10 @@ CREATE TABLE bookings (
   `booking_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `movie_id` INT NOT NULL,
-  `date` VARCHAR(10) NOT NULL,
-  `time` VARCHAR(10) NOT NULL,
+  `date_book` VARCHAR(10) NOT NULL,
+  `time_book` VARCHAR(10) NOT NULL,
+  `date_start` VARCHAR(10) NOT NULL,
+  `time_start` VARCHAR(10) NOT NULL,
   `location` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`booking_id`),
   FOREIGN KEY (`user_id`) REFERENCES users(`user_id`)
@@ -95,7 +96,7 @@ delimiter;
 
 delimiter $$
 drop procedure  if exists movie_booking $$
-create procedure movie_booking(`new_user_id` int , `new_movie_id` int , `new_date` varchar(10),`new_time` varchar(10), `new_location` varchar(200), `new_seat_id` varchar(4))
+create procedure movie_booking(`new_user_id` int , `new_movie_id` int , `new_date_book` varchar(10),`new_time_book` varchar(10),`new_date_start` varchar(10),`new_time_start` varchar(10), `new_location` varchar(200), `new_seat_id` varchar(4))
 begin 
 	declare cnt int default 0;
     declare id int ;
@@ -103,26 +104,26 @@ begin
     declare validDate boolean default true;
     declare releaseDate varchar(10);
 	start transaction;
-    select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date`=  `new_date` and `time`=`new_time`and `location`=`new_location`;
+    select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `location`=`new_location`;
     if cnt = 0 then
-		insert into bookings(`user_id`,`movie_id`,`date`,`time`,`location`) value (`new_user_id`,`new_movie_id`,`new_date`,`new_time`,`new_location`);
+		insert into bookings(`user_id`,`movie_id`,`date_book`,`time_book`, `date_start`,`time_start`,`location`) value (`new_user_id`,`new_movie_id`,`new_date_book`,`new_time_book`,`new_date_start`,`new_time_start`,`new_location`);
     end if;
     
     -- check release date of film: just allow booking if release >= current date
     select `release_date` into releaseDate from movies where `movie_id`=`new_movie_id`;
 	select checkReleaseDate(releaseDate) into validDate;
     -- check booked seats: 2 booking users at the same, if user1 booked with the same seats before user2 then booking user2 will cancel.
-    select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
+    select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`;
     select * from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
     if validDate = true and cnt=0 then
-		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date`=  `new_date` and `time`=`new_time`and `location`=`new_location`;
+		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
 		insert into bookedSeats(`seat_id`,`booking_id`) value (`new_seat_id`,`idOfBooking`);
 		commit;
 	else rollback;
 	end if;
 end;
 delimeter;
--- call movie_booking(16,170,'02-04-2023','20:07', 'Can Tho','E18'); 
+-- call movie_booking(2,4,'13-04-2023','10:01','02-04-2023','20:07', 'Can Tho','E8'); 
 
 
  delimiter $$
@@ -145,34 +146,4 @@ begin
 end;
 delimiter;
 
-delimiter $$
-drop procedure if exists showBooking $$
-create procedure showBookings(`userid` int,inout result text)
-begin 
-	DECLARE v_finished INTEGER DEFAULT 0;
-    declare bookingIdCursor cursor for select `booking_id` from bookings where user_id=userid;
-    declare bookingId int;
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
-    open bookingIdCursor;
-    
-    create view result as
-    select distinct b.`booking_id`, b.`user_id`, b.`movie_id`, `name`, `date`, `time`, location,  title,
-    `description`, poster_url, release_date, duration, category, `national`, seatId
-    from bookings b
-    join movies mv on mv.`movie_id`=b.`movie_id`
-    join users u on u.`user_id`=b.`user_id`
-    where u.`user_id`=`userid`;
-    
-    getBooking:loop
-		fetch bookingIdCursor into bookingId;
-		IF v_finished = 1 THEN 
-			LEAVE get_email; 
-		END IF;
-	
-    update  view result set (select seat_id from bookingSeats where `booking_id`=bookingId;
-    end loop getBooking;
-    close bookingIdCursor;
-end;
-delimiter;
-call showBookings(1)
  

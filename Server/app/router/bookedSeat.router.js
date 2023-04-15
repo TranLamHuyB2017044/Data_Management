@@ -3,7 +3,8 @@ const router = express.Router();
 const bookedSeatController = require('../controllers/bookedSeat.controller');
 
 // todoList Routes
-router.route('/:movie_id/:date').get(bookedSeatController.getAllSeat);
+router.route('/detailseats/:movie_id').post(bookedSeatController.getAllSeat);
+router.route('/bookingid/:id').get(bookedSeatController.getByBookingId);
 
 router
     .route('/:id')

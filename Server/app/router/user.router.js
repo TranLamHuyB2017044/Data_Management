@@ -9,10 +9,10 @@ router
     .get(userController.getAllUser)
     .post(userController.createUser)
     .delete(userController.removeAllUser);
+
 router
     .route('/:id')
     .get(userController.getOneUserById)
     .put(userController.updateUser)
     .delete(userController.removeUser);
-router.route('/allBookings/:id').get(userController.getAllBookings);
 module.exports = router;

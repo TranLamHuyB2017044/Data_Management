@@ -19,19 +19,23 @@ var createQR = function (booking) {
 const Booking = function (booking) {
     this.user_id = booking.user_id;
     this.movie_id = booking.movie_id;
-    this.date = booking.date;
-    this.time = booking.time;
+    this.date_book = booking.date_book;
+    this.time_book = booking.time_book;
+    this.date_start = booking.date_start;
+    this.time_start = booking.time_start;
     this.location = booking.location;
 };
 Booking.createBooking = (newBooking, seats, cb) => {
-    const query = `call movie_booking(?,?,?,?,?,?)`;
+    const query = `call movie_booking(?,?,?,?,?,?,?,?)`;
     var data = [];
     seats.forEach((seat) => {
         let newB = [
             newBooking.user_id,
             newBooking.movie_id,
-            newBooking.date,
-            newBooking.time,
+            newBooking.date_book,
+            newBooking.time_book,
+            newBooking.date_start,
+            newBooking.time_start,
             newBooking.location,
             seat,
         ];
@@ -59,7 +63,9 @@ Booking.getBookingById = (id, cb) => {
     );
 };
 Booking.getBookingByUserId = (id, cb) => {
-    sql.query(`Select * from bookings where user_id = ${id}`, (err, result) => {
+    const query =
+        'select distinct b.booking_id, b.user_id, b.movie_id, name, date_book, time_book,date_start, time_start, location,  title, description, poster_url, release_date, duration, category, national from bookings b join movies mv on mv.movie_id=b.movie_id join users u on u.user_id=b.user_id where u.user_id=?';
+    sql.query(query, id, (err, result) => {
         if (err) {
             cb(err, null);
         } else {

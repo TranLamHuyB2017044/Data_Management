@@ -3,7 +3,8 @@ import HomeView from '../views/HomeView.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import Details from '../views/Details.vue';
-import Manage from '../views/Manage.vue'
+import Edit from '../views/Edit.vue';
+import Manage from '../views/Manage.vue';
 import { useUserStore } from '../stores/user.store';
 import pinia from '../stores/defineStore';
 const userStore = useUserStore(pinia);
@@ -32,9 +33,14 @@ const router = createRouter({
             props: true,
         },
         {
-            path: '/admin/manager',
+            path: '/manager',
             name: 'manager',
             component: Manage,
+        },
+        {
+            path: '/edit',
+            name: 'edit',
+            component: Edit,
         },
     ],
 });
@@ -47,3 +53,4 @@ router.beforeEach(async (to, _from, next) => {
     else next();
 });
 export default router;
+

@@ -6,12 +6,15 @@ exports.createBooking = async (req, res) => {
     var inforBooking = {
         user_id: data.user_id,
         movie_id: data.movie_id,
-        date: data.date,
-        time: data.time,
+        date_book: data.date_book,
+        time_book: data.time_book,
+        date_start: data.date_start,
+        time_start: data.time_start,
         location: data.location,
     };
     var inforSeats = data.seats;
     var newBooking = new Booking(inforBooking);
+    console.log(newBooking);
     Booking.createBooking(newBooking, inforSeats, (err, result) => {
         if (err) res.send(err);
         else {
