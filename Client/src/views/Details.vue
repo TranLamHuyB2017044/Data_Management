@@ -17,7 +17,7 @@
         </div>
         <div class="booking container my-3">
             <h3>Lịch chiếu phim: {{ film.title }}</h3>
-            <p>Địa điểm rạp: Lotte Cần Thơ</p>
+            <p>Địa điểm rạp: Lotte Cinema Cần Thơ</p>
             <div class="date rounded-3 d-flex justify-content-center py-2">
                 <div
                     role="button"
@@ -276,7 +276,7 @@ export default {
                     time_start: this.timeStart,
                     date_book: timeBooking.currentDay,
                     time_book: timeBooking.currentTime,
-                    location: 'Lotte Can Tho',
+                    location: 'LotteCinema Can Tho',
                     seats: array,
                 };
                 if (this.seats.length === 0) {

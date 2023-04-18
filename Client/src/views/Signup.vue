@@ -33,15 +33,7 @@
                         placeholder="Password"
                         required
                         v-model="password" />
-                    <div class="d-flex align-items-center">
-                        <input
-                            id="inputAdmin"
-                            type="checkbox"
-                            class="p-3 m-2"
-                            style="width: 2rem; height: 2rem"
-                            v-model="admin" />
-                        <label for="inputAdmin">Admin</label>
-                    </div>
+
 
                     <div
                         class="text-center mt-3 d-flex flex-column align-items-center justify-content-center">

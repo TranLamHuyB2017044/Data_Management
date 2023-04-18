@@ -44,19 +44,6 @@
                             Logout
                         </button>
                     </li>
-                    <li>
-                        <router-link
-                            to="/myticket"
-                            class="dropdown-item"
-                            type="button">
-                            My Ticket
-                        </router-link>
-                    </li>
-                    <li>
-                        <button class="dropdown-item" type="button">
-                            Something else
-                        </button>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -79,9 +66,6 @@ export default {
             this.$router.push({ name: 'login' });
         },
     },
-    // async mounted() {
-    //     console.log(this.userStore.user.admin)
-    // },
 };
 </script>
 <style>
