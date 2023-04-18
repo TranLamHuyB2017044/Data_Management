@@ -3,7 +3,7 @@
         class="container_form d-flex align-items-center justify-content-center">
         <div class="card mycard border-0 text-white">
             <div class="card-body">
-                <h2 class="card-title text-center">Wellcome</h2>
+                <h2 class="card-title text-center">Welcome</h2>
                 <form method="post" @submit.prevent="login()">
                     <input
                         type="text"
