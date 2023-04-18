@@ -14,7 +14,7 @@ exports.createBooking = async (req, res) => {
     };
     var inforSeats = data.seats;
     var newBooking = new Booking(inforBooking);
-    console.log(newBooking);
+    // console.log(newBooking);
     Booking.createBooking(newBooking, inforSeats, (err, result) => {
         if (err) res.send(err);
         else {
