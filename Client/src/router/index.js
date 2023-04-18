@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import Details from "../views/Details.vue";
 import Edit from "../views/Edit.vue";
 import Manage from "../views/Manage.vue";
+import SearchFilm from "../views/SearchFilm.vue";
 import { useUserStore } from "../stores/user.store";
 import pinia from "../stores/defineStore";
 const userStore = useUserStore(pinia);
@@ -41,6 +42,11 @@ const router = createRouter({
       path: "/edit",
       name: "edit",
       component: Edit,
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: SearchFilm,
     },
     {
         path: "/:pathMatch(.*)*",

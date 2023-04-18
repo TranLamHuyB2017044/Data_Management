@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import FilmService from '../services/film.service';
 export const useFilmStore = defineStore('film', {
-    state: () => ({ films: [] }),
+    state: () => ({ films: [] , searchFilm:[]}),
     getters: {},
     actions: {
         async getAllFilms() {
@@ -11,5 +11,8 @@ export const useFilmStore = defineStore('film', {
                 console.log(err);
             }
         },
+        getSearchFilm(filmSearch) {
+            this.searchFilm = filmSearch;
+        }
     },
 });
