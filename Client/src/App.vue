@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-    <div id="app">
+    <div id="app" style="overflow-x: hidden">
         <app-header v-if="this.userStore.user" />
         <RouterView />
         <app-footer v-if="this.userStore.user" />

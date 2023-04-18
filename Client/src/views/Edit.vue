@@ -1,117 +1,119 @@
 <template>
-  <!-- <div class="container">
-    <form class="row g-3 form" @submit.prevent="updateUser">
-      <h2>User Profile <br /></h2>
-      <div>
-        <label for="name" class="form-label ">Name</label>
-        <input v-model="this.user.name" type="text" class="form-control" id="name" />
-      </div>
-      <div>
-        <label for="username" class="form-label">Username</label>
-        <input v-model="this.user.username" type="text" class="form-control" id="username" />
-      </div>
-      <div>
-        <label for="password" class="form-label">Password</label>
-        <input v-model="this.user.password" type="password" class="form-control" id="password" />
-      </div>
-      <div>
-        <label for="email" class="form-label">Email</label>
-        <input v-model="this.user.email" type="text" class="form-control" id="email" />
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Update</button>
-      </div>
-    </form>
-  </div> -->
-  <form @submit.prevent="updateUser" @submit="deleteUser">
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Name</p>
+    <div class="edit d-flex justify-content-center align-items-center">
+        <form
+            @submit.prevent="updateUser"
+            @submit="deleteUser"
+            class="vw-50 my-5 form_edit d-flex flex-column justify-content-center align-items-center p-3 rounded-4"
+            style="border-radius: 5px; backdrop-filter: blur(50px)">
+            <div class="col-lg-12 border-0">
+                <div class="card mb-4" style="background-color: unset">
+                    <div class="card-body" style="background-color: unset">
+                        <div class="row">
+                            <div class="">
+                                <p class="mb-0">Name</p>
+                            </div>
+                            <div class="">
+                                <input
+                                    v-model="this.user.name"
+                                    type="text"
+                                    class="form-control"
+                                    id="name" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="">
+                                <p class="mb-0">User Name</p>
+                            </div>
+                            <div class="">
+                                <input
+                                    v-model="this.user.username"
+                                    type="text"
+                                    class="form-control"
+                                    id="username" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="">
+                                <p class="mb-0">Password</p>
+                            </div>
+                            <div class="">
+                                <input
+                                    v-model="this.newpassword"
+                                    type="password"
+                                    class="form-control"
+                                    id="password" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="">
+                                <input
+                                    v-model="this.user.email"
+                                    type="text"
+                                    class="form-control"
+                                    id="email" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-9">
-              <input v-model="this.user.name" type="text" class="form-control" id="name" />
+            <div class="form-group">
+                <div class="col-4">
+                    <button
+                        type="submit"
+                        class="btn btn-primary align -center"
+                        style="background-color: #2b59735c">
+                        Update
+                    </button>
+                </div>
             </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">User Name</p>
-            </div>
-            <div class="col-sm-9">
-              <input v-model="this.user.username" type="text" class="form-control" id="username" />
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Password</p>
-            </div>
-            <div class="col-sm-9">
-              <input v-model="this.user.password" type="password" class="form-control" id="password" />
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Email</p>
-            </div>
-            <div class="col-sm-9">
-              <input v-model="this.user.email" type="text" class="form-control" id="email" />
-            </div>
-          </div>
-
-        </div>
-      </div>
+        </form>
     </div>
-    <div class="form-group">
-      <div class="col-4">
-        <button type="submit" class="btn btn-primary align -center">Update</button>
-      </div>
-      <!-- <div class="col-4">
-        <button v-if="this.useUser.user" type="button" class="btn btn-primary align -scenter" @click="deleteUser">DeleteUser</button>
-      </div> -->
-    </div>
-
-
-  </form>
 </template>
 <script>
 import { useUserStore } from '../stores/user.store';
 export default {
-  setup() {
-    const useUser = useUserStore();
-    return { useUser };
-  },
-  data() {
-    return {
-      user: {},
-    };
-  },
-  methods: {
-    // async deleteUser() {
-    //   localStorage.removeItem('id');
-    //   this.userStore.user = null;
-    //   this.$router.push({ name: 'login' });
-    // },
-    async updateUser() {
-      try {
-        await this.useUser.update(
-          this.useUser.user.user_id,
-          this.useUser.user,
-        );
-        alert('User update successfully!!');
-        this.$forceUpdate();
-      } catch (error) {
-        console.error(error);
-      }
+    setup() {
+        const useUser = useUserStore();
+        return { useUser };
     },
-  },
-  mounted() {
-    this.user = this.useUser.user;
-  },
+    data() {
+        return {
+            user: {},
+            newpassword: '',
+        };
+    },
+    methods: {
+        async updateUser() {
+            try {
+                this.user.password = this.newpassword;
+                await this.useUser.update(this.user.user_id, this.user);
+                alert('User update successfully!!');
+                this.$forceUpdate();
+            } catch (error) {
+                console.error(error);
+            }
+        },
+    },
+    mounted() {
+        this.user = this.useUser.user;
+    },
 };
 </script>
-
+<style scoped>
+.edit {
+    height: 90vh;
+    width: 100vw;
+    background-image: url(../assets/bg_edit.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+button:hover {
+    background-color: #2b5973da !important;
+}
+</style>
