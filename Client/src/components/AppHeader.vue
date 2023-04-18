@@ -17,9 +17,10 @@
           type="search"
           placeholder="Search"
           aria-label="Search"
+          @keyup.enter="changeToSearchPage"
           v-model="searchText"
         />
-        <button class="btn btn-outline-success" @click.prevent="changeToSearchPage" type="submit">Search</button>
+        <button class="btn btn-outline-success" @click.prevent="changeToSearchPage()" >Search</button>
       </form>
       <span v-if="this.userStore.user" class="text-white">{{
         this.userStore.user.name
@@ -32,6 +33,7 @@
           id="dropdownMenu2"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+          
         >
           <i id="user_dropdown" class="fa-regular fa-circle-user"></i>
         </button>
@@ -68,7 +70,6 @@ export default {
   data() {
     return {
       searchText: "",
-      searchFilm:[]
     };
   },
   methods: {
@@ -77,17 +78,12 @@ export default {
       this.userStore.user = null;
       this.$router.push({ name: "login" });
     },
-    getSearchFilm(){
-        var result= this.filmStore.filter((film)=>
-            film.title.includes(this.searchText)
-        )
-        this.filmStore.getSearchFilm(result)
-    },
     feature() {
       alert("Tính năng hiện chưa tồn tại");
     },
     changeToSearchPage(){
-      this.$router.push({name: "search"});
+      if(this.searchText)
+        this.$router.push({name: "search", params:{searchText:this.searchText}});
     }
   },
 

@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <div class="sidebar container-fluid d-flex flex-column justify-content-center align-items-center">
-            <h1 class="text-white mt-3 mb-4">Phim sắp chiếu</h1>
+    <div :key="this.$route.params.searchText" v-if="searchText">
+        <div class="sidebar  d-flex flex-column justify-content-center align-items-center">
+            <h1 class="text-white mt-3 mb-4">Có {{ this.searchFilm.length }} bộ phim đã được tìm thấy.</h1>
 
             <div
                 class="container-films row row-cols-1 row-cols-md-3 row-cols-xl-5 overflow-auto g-4"
                 style="height: 90vh; width: 80%">
                 <div class="col" v-for="film in searchFilm" :key="film.movie_id">
                     <router-link :to="{name: 'details', params: {id: film.movie_id}}" >
-                        <div class="card bg-transparent border-0">
+                        <div class="card bg-transparent border-0" >
                             <img :src="film.poster_url" class="card-img-top rounded-4" :alt="film.title" />
                             <div class="card-body overflow-hidden">
                                 <h5 class="card-title" :alt="film.title">
@@ -35,10 +35,14 @@ export default {
     data() {
         return {
             searchFilm: [],
+            searchText:''
         };
     },
-    async mounted() {
-        this.searchFilm = this.filmStore.searchFilm;
+     async mounted() {
+        console.log(this.$route.params.searchText)
+        this.searchText=this.$route.params.searchText
+            await this.filmStore.getSearchFilm(this.searchText);
+        this.searchFilm =await this.filmStore.searchFilm
     },
 };
 </script>

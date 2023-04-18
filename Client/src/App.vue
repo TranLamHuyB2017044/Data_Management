@@ -24,7 +24,7 @@ export default {
 <template>
     <div id="app" style="overflow-x: hidden">
         <app-header v-if="this.userStore.user" />
-        <RouterView />
+        <RouterView :key="this.$route.path"/>
         <app-footer v-if="this.userStore.user" />
     </div>
 </template>

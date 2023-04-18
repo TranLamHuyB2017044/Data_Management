@@ -44,9 +44,10 @@ const router = createRouter({
       component: Edit,
     },
     {
-      path: "/search",
+      path: "/search/:searchText",
       name: "search",
       component: SearchFilm,
+      props:true
     },
     {
         path: "/:pathMatch(.*)*",
