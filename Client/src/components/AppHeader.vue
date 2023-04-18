@@ -8,8 +8,8 @@
                         >User Manager</router-link
                     >
                 </li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
+                <li @click="feature"><a href="#">Projects</a></li>
+                <li @click="feature"><a href="#">About</a></li>
             </ul>
         </nav>
         <div class="d-flex justify-content-center align-items-center gap-2">
@@ -57,7 +57,9 @@ export default {
         return { userStore };
     },
     data() {
-        return {};
+        return {
+        }
+        
     },
     methods: {
         logout() {
@@ -65,6 +67,9 @@ export default {
             this.userStore.user = null;
             this.$router.push({ name: 'login' });
         },
+        feature(){
+            alert("Tính năng hiện chưa tồn tại");
+        }
     },
 };
 </script>
