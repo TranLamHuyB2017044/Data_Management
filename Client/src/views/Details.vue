@@ -191,6 +191,7 @@ export default {
                 this.timeStart,
             );
             const currenSeat = document.querySelectorAll('.seat span');
+            console.log(this.seated)
             currenSeat.forEach((s) => {
                 s.parentElement.style.backgroundColor = '#db7373';
             });
