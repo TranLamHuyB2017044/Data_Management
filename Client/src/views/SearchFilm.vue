@@ -41,7 +41,7 @@ export default {
      async mounted() {
         console.log(this.$route.params.searchText)
         this.searchText=this.$route.params.searchText
-            await this.filmStore.getSearchFilm(this.searchText);
+        await this.filmStore.getSearchFilm(this.searchText);
         this.searchFilm =await this.filmStore.searchFilm
     },
 };

@@ -63,12 +63,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-4">
+                <div class="col-4 d-flex">
                     <button
+                        @click.prevent="updateUser"
                         type="submit"
                         class="btn btn-primary align -center"
                         style="background-color: #2b59735c">
                         Update
+                    </button>
+                    <button
+                        @click.prevent="deleteUser"
+                        class="delete-btn btn btn-danger align -center mx-2"
+                        style="background-color: #2b59735c">
+                        Detele
                     </button>
                 </div>
             </div>
@@ -77,6 +84,7 @@
 </template>
 <script>
 import { useUserStore } from '../stores/user.store';
+import userService from '../services/user.service';
 export default {
     setup() {
         const useUser = useUserStore();
@@ -99,6 +107,21 @@ export default {
                 console.error(error);
             }
         },
+        async deleteUser(){
+            try {
+                if(confirm('Chắc chưa bro, ok là cút đấy')){
+                    await userService.delete(this.user.user_id);
+                    localStorage.removeItem("id");
+                    this.useUser.user = null;
+                    this.$router.push({ name: "login" });
+                    alert('Cút! ')
+                }else{
+                    return false;
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
     },
     mounted() {
         this.user = this.useUser.user;
@@ -114,6 +137,9 @@ export default {
     background-size: cover;
 }
 button:hover {
-    background-color: #2b5973da !important;
+    background-color: #097fb2da !important;
+}
+.delete-btn:hover{
+    background: red !important;
 }
 </style>
