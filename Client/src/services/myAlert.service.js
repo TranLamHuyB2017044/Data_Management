@@ -1,10 +1,10 @@
 import Swal from 'sweetalert2';
 class MyAlert {
-    Alert(icon, title) {
+    Alert(icon, text) {
         Swal.fire({
             position: 'top',
             icon: icon,
-            title: title,
+            text: text,
             showConfirmButton: false,
             timer: 1500,
         });

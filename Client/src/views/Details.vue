@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="play">
+        <div id="play" class="mb-3">
             <img :src="`${film.poster_url}`" alt="" class="movie-img" />
 
             <div class="play-text">
@@ -15,7 +15,7 @@
                 <p>Thời lượng: {{ film.duration }} phút</p>
             </div>
         </div>
-        <div class="booking container my-3">
+        <div class="booking container my-2">
             <h3>Lịch chiếu phim: {{ film.title }}</h3>
             <p>Địa điểm rạp: Lotte Cinema Cần Thơ</p>
             <div class="date rounded-3 d-flex justify-content-center py-2">
@@ -191,7 +191,7 @@ export default {
                 this.timeStart,
             );
             const currenSeat = document.querySelectorAll('.seat span');
-            console.log(this.seated)
+            console.log(this.seated);
             currenSeat.forEach((s) => {
                 s.parentElement.style.backgroundColor = '#db7373';
             });
@@ -316,7 +316,6 @@ export default {
     /* margin-top: 50px;aaa */
     display: flex;
     padding: 24px 24px 60px 40px;
-    margin-bottom: 100px;
     z-index: 2;
     color: #ffffff;
     background-image: linear-gradient(

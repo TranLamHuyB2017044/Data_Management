@@ -9,6 +9,9 @@ input{
     color: white !important;
     font-size: 1.2rem !important;
 }
+input::placeholder{
+    color: white !important;
+}
 .container_form{
     width: 100vw;
     height: 100vh;

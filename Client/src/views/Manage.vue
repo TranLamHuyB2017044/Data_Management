@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 80%" class="mx-auto" v-if="this.items">
+    <div class="mx-auto vh-100 overflow-auto container" v-if="this.items">
         <div
             class="card m-4"
             v-for="item in items"
@@ -128,3 +128,8 @@ export default {
     },
 };
 </script>
+<style scoped>
+.container::-webkit-scrollbar {
+    display: none;
+}
+</style>
