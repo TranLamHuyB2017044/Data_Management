@@ -87,12 +87,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-4 d-flex">
+                <div class="col-10 d-flex">
                     <button
                         @click.prevent="updateUser()"
                         type="submit"
-                        class="btn btn-primary align -center"
-                        style="background-color: #2b59735c">
+                        class="btn btn-primary w-100"
+                        style="
+                            background-color: #2b59735c;
+                            white-space: nowrap;
+                        ">
                         Cập nhật
                     </button>
                     <button

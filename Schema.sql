@@ -80,6 +80,18 @@ begin
 	end if;
 end;
 delimiter;
+-- check valid date of movie when booking
+delimiter $$
+drop function if exists checkReleaseDate $$
+create function checkReleaseDate(releasedate varchar(10), date_book varchar(10))
+returns boolean
+deterministic
+begin 
+    set releasedate= str_to_date(releasedate, '%d-%m-%Y');
+    set date_book= str_to_date(date_book, '%d-%m-%Y');
+    return releasedate <= date_book;
+end;
+delimiter;
 
 delimiter $$
 drop procedure  if exists movie_booking $$
@@ -89,15 +101,20 @@ begin
     declare id int ;
     declare idOfBooking int ;
     declare validDate boolean default true;
---     declare releaseDate varchar(10);
+    declare releaseDate varchar(10);
 	start transaction;
     select count(*) into cnt from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `location`=`new_location`;
     if cnt = 0 then
 		insert into bookings(`user_id`,`movie_id`,`date_book`,`time_book`, `date_start`,`time_start`,`location`) value (`new_user_id`,`new_movie_id`,`new_date_book`,`new_time_book`,`new_date_start`,`new_time_start`,`new_location`);
     end if;
+    
+    -- check release date of film: just allow booking if release >= current date
+    select `release_date` into releaseDate from movies where `movie_id`=`new_movie_id`;
+	select checkReleaseDate(releaseDate, `new_date_book`) into validDate;
+    -- check booked seats: 2 booking users at the same, if user1 booked with the same seats before user2 then booking user2 will cancel.
     select count(*) into cnt from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`;
     select * from bookings b join bookedSeats bs on bs.`booking_id` = b.`booking_id` where `seat_id` =`new_seat_id` and  b.`movie_id`=`new_movie_id`;
-    if  cnt=0 then
+    if validDate = true and cnt=0 then
 		select `booking_id` into `idOfBooking` from bookings where `user_id`=`new_user_id` and `movie_id`=`new_movie_id` and `date_start`=  `new_date_start` and `time_start`=`new_time_start`and `date_book`=  `new_date_book` and `time_book`=`new_time_book`and `location`=`new_location`;
 		insert into bookedSeats(`seat_id`,`booking_id`) value (`new_seat_id`,`idOfBooking`);
 		commit;
@@ -122,9 +139,21 @@ drop procedure if exists removeUser $$
 create procedure removeUser(`id` int)
 begin 
 	declare idOfBooking int;
-    select `booking_id` into idOfBooking from bookings where `user_id`=`id`;
+    declare v_finished integer DEFAULT 0;
+    declare bookingId int;
+    DECLARE bookingsCursor CURSOR FOR SELECT  `booking_id` FROM bookings where user_id=`id`;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
+    open bookingsCursor;
+    
 	delete from users where `user_id`=`id`;
-    call removeBooking(idOfBooking);
+    delete_booking: loop
+		fetch bookingsCursor into bookingId;
+		if v_finished=1 then
+			leave delete_booking;
+		end if;
+		call removeBooking(bookingId);
+    end loop delete_booking;
+    close bookingsCursor;
 end;
 delimiter;
 
