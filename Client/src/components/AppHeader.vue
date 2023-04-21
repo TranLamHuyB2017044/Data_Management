@@ -18,7 +18,7 @@
                     class="form-control me-2 text-white"
                     style="height: 50%"
                     type="search"
-                    placeholder="Search"
+                    placeholder="Tìm kiếm"
                     aria-label="Search"
                     @keyup.enter="changeToSearchPage"
                     v-model="searchText" />
