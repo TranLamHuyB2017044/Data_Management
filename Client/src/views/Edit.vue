@@ -10,7 +10,7 @@
                     <div class="card-body" style="background-color: unset">
                         <div class="row">
                             <div class="">
-                                <p class="mb-0">Name</p>
+                                <p class="mb-0">Tên người dùng</p>
                             </div>
                             <div class="">
                                 <input
@@ -23,7 +23,7 @@
                         <hr />
                         <div class="row">
                             <div class="">
-                                <p class="mb-0">User Name</p>
+                                <p class="mb-0">Tên đăng nhập</p>
                             </div>
                             <div class="">
                                 <input
@@ -61,7 +61,7 @@
                         <div v-if="changePass">
                             <div class="row">
                                 <div class="">
-                                    <p class="mb-0">Current Password</p>
+                                    <p class="mb-0">Mật khẩu hiện tại</p>
                                 </div>
                                 <div class="">
                                     <input
@@ -73,7 +73,7 @@
                             <hr />
                             <div class="row">
                                 <div class="">
-                                    <p class="mb-0">New Password</p>
+                                    <p class="mb-0">Mật khẩu mới</p>
                                 </div>
                                 <div class="">
                                     <input
@@ -87,13 +87,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-4 d-flex">
+                <div class="col-6 d-flex">
                     <button
                         @click.prevent="updateUser()"
                         type="submit"
-                        class="btn btn-primary align -center"
-                        style="background-color: #2b59735c">
-                        Cập nhật
+                        class="btn btn-primary"
+                        style="background-color: #2b59735c; width:  !important;">
+                        <span style="white-space: nowrap;">Cập nhật</span>
+                        
                     </button>
                     <button
                         @click.prevent="deleteUser"
