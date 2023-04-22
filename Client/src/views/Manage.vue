@@ -96,11 +96,11 @@ export default {
             return new Intl.NumberFormat().format(this.cost * numSeat);
         },
         getQRCode(data) {
-            return `Film name: ${data.title}\nMovie day: ${
-                data.date_start
-            }\nMovie time: ${data.time_start}\nSeats: ${
-                data.seats
-            }\nCustomer: ${data.name}\nDay booked: ${
+            return `IdBooking: ${data.booking_id}\nFilm name: ${
+                data.title
+            }\nMovie day: ${data.date_start}\nMovie time: ${
+                data.time_start
+            }\nSeats: ${data.seats}\nCustomer: ${data.name}\nDay booked: ${
                 data.date_book
             }\nTime booked: ${data.time_book}\nCost: ${this.showCost(
                 data.seats?.length,

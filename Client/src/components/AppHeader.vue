@@ -68,6 +68,7 @@
 <script>
 import { useUserStore } from '../stores/user.store';
 import { useFilmStore } from '../stores/film.store';
+import myAlertService from '../services/myAlert.service';
 export default {
     setup() {
         const userStore = useUserStore();
@@ -86,7 +87,7 @@ export default {
             this.$router.push({ name: 'login' });
         },
         feature() {
-            alert('Tính năng hiện chưa tồn tại');
+            myAlertService.Alert('info', 'Tính năng hiện chưa tồn tại');
         },
         changeToSearchPage() {
             if (this.searchText)

@@ -87,27 +87,13 @@
                 </div>
             </div>
             <div class="form-group">
-<<<<<<< HEAD
-                <div class="col-10 d-flex">
-                    <button
-                        @click.prevent="updateUser()"
-                        type="submit"
-                        class="btn btn-primary w-100"
-                        style="
-                            background-color: #2b59735c;
-                            white-space: nowrap;
-                        ">
-                        Cập nhật
-=======
                 <div class="col-6 d-flex">
                     <button
                         @click.prevent="updateUser()"
                         type="submit"
                         class="btn btn-primary"
-                        style="background-color: #2b59735c; width:  !important;">
-                        <span style="white-space: nowrap;">Cập nhật</span>
-                        
->>>>>>> d005324d2771d95b28d1b6f038644d5adc990ade
+                        style="background-color: #2b59735c; width: !important">
+                        <span style="white-space: nowrap">Cập nhật</span>
                     </button>
                     <button
                         @click.prevent="deleteUser"
